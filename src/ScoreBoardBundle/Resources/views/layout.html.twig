@@ -24,10 +24,10 @@
 	    <![endif]-->
 		{% endblock %}
 
-    {% block javascript %}
+    {% block javascript %} 
+      <script type="text/javascript" src="{{ asset ('bundles/ScoreBoard/js/jquery-1.11.2.min.js') }}"></script>
       <script type="text/javascript" src="{{ asset ('bundles/ScoreBoard/js/timer.js') }}"></script>
       <script type="text/javascript" src="{{ asset ('bundles/ScoreBoard/js/matchs.js') }}"></script>
-      <script type="text/javascript" src="{{ asset ('bundles/ScoreBoard/js/jquery-1.11.2.min.js') }}"></script>
     {% endblock %}
 	{% endblock %}
 </head>

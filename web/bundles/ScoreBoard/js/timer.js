@@ -1,19 +1,18 @@
-$( function() {
-	var timerMath = new (function() {
+ var timerMath = new (function() {
 
     var $countdown;
     var $form;
     var incrementTime = 70;
     var currentTime = 300000; // 5 minutes (in milliseconds)
     
-    $(function() {
+    jQuery(function() {
 
         // Setup the timer
         $countdown = $('#countdown');
         timerMath.Timer = $.timer(updateTimer, incrementTime, true);
 
         // Setup form
-        $form = $('#example2form');
+        $form = $('.timer');
         $form.bind('submit', function() {
             timerMath.resetCountdown();
             return false;

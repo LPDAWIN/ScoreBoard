@@ -26,8 +26,12 @@
 	{% for match in matchs %}
 		<p>{{ match.team1}}</p>
 		<label id="score1">0</label>
+		<img id="less1" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
+		<img id="more1" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
 		<p>{{ match.team2}}</p>
 		<label id="score2">0</label>
+		<img id="less2" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
+		<img id="more2" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
 	{% endfor %}
 </div>
 {% endblock %}

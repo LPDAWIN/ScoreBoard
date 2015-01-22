@@ -1,12 +1,47 @@
 jQuery(function(){
 
-
+	
+	// Récupération variable
 	var score1 = $("#score1");
+	var score2 = $("#score2");
 	var i = 0;
 	var j = 0;
-
 	score1.html(i);
 	score2.html(j);
+	var ajout1 = $("#more1");
+	var ajout2 = $("#more2");
+	var less1 = $("#less1");
+	var less2 = $("#less2");
+
+	//Ajoute Score 1 : + 1
+	ajout1.click(function(){
+		i += 1;
+		score1.html(i);
+
+
+	});
+
+	//Ajoute Score 2 : + 1
+	ajout2.click(function(){
+		j += 1;
+		score2.html(j);
+	});
+
+	//Enleve Score 1 : - 1
+	less1.click(function(){
+		i -= 1;
+		score1.html(i);
+
+
+	});
+
+	//Enleve Score 2 : - 1
+	less2.click(function(){
+		j -= 1;
+		score2.html(j);
+
+
+	});
 
 
 });

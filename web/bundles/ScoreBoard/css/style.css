@@ -29,10 +29,12 @@
 	border-radius: 4px;
 }
 
-.pause, .lecture {
-	float: left;
+#countdown {
+	clear: both;
+	display: block;
+	margin-bottom: 10px;
 }
 
-.pause {
-	margin-right: 10px;
+.timer input {
+	display: block;
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% block header %}
+		<title>ScoreBoard</title>
+
+		{% block stylesheet%}
+	    <!-- Bootstrap core CSS -->
+	    <link href="{{ asset('bundles/ScoreBoard/css/bootstrap.min.css') }}" rel="stylesheet">
+	    <!-- Bootstrap theme -->
+	    <link href="{{ asset('bundles/ScoreBoard/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+	    <link href="{{ asset('bundles/ScoreBoard/css/theme.css') }}" rel="stylesheet">
+      <link href="{{ asset('bundles/ScoreBoard/css/style.css') }}" rel="stylesheet">
+
+
+	    <!-- Custom styles for this template -->
+
+	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+		{% endblock %}
+	{% endblock %}
+</head>
+<body>
+	 <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home">Score Board</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="home">Home</a></li>
+            <li><a href="match">Match</a></li>
+            <li><a href="contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+     <div class="contents">
+            {% block content %}{% endblock %}
+    </div>
+</body>

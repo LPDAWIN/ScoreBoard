@@ -1,0 +1,5 @@
+app/cache/*
+vendor/*
+app/logs/*
+app/*.cache
+app/config/parameters.yml

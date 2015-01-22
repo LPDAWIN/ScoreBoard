@@ -1,0 +1,10 @@
+{% extends "ScoreBoardBundle::layout.html.twig" %}
+
+{% block content %}
+	<h1 class="test">Bienvenue</h1>
+
+	<p> Vous pouvez ici créer votre match, projeter un écran avec le score et la timélie ainsi qu'un autre écran pour l'arbitre afin de gérer le score et les différents éléments qui seront affichés. dans la timeline</p>
+	{% for match in matchs %}
+		<p>{{ match.team1}}</p>
+	{% endfor %}
+{% endblock %}

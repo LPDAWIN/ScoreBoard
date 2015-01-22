@@ -1,0 +1,11 @@
+home_ScoreBoard:
+    path:     /home
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:home }
+
+match_ScoreBoard:
+    path:     /match
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:match }
+
+contact_ScoreBoard:
+    path:     /contact
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:contact }

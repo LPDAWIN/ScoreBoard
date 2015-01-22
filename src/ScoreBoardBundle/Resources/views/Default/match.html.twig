@@ -3,38 +3,36 @@
 {% block content %}
 <h1 class="contact">Page match</h1>
 <div class="Board">
+	{% for match in matchs %}
 	<div class="team1">
-		<h2>Team1</h2>
-		<p>image team1 ici</p><img src=""/>
+		<h2>{{ match.team1}}</h2>
+		<img width="50px" height="50px" src="http://upload.wikimedia.org/wikipedia/fr/7/76/Logo_des_Girondins_de_Bordeaux.svg"/>
 	</div>
 	<div class="timer">
 		<form id="timerform">
 			<span id ="countdown">Enter time</span>
-			<input class="pause" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
-			<input class="reset"type="button" value="Stop/Reset" onclick="timerMatch.resetCountdown();">
+			<input class="btn btn-sm btn-default" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
+			<input class="btn btn-sm btn-default"type="button" value="Stop/Reset" onclick="timerMatch.resetCountdown();">
 			<input type='text' name='startTime' placeholder="Temps : Mi-temps" style='width:150px;' />
 		</form>
 	</div>
 	<div class="team2">
-		<h2>Team2</h2>
-		<p>image team2 ici</p><img src="" />
+		<h2>{{ match.team2}}</h2>
+		<img width="50px" height="50px" src="http://www.les-transferts.com/wp-content/uploads/2013/01/benfica.png" />
 	</div>
+{% endfor %}
 </div>
 <div class="Score">
 	<h2>Score</h2>
-	<div class="score1">
-	</div>
-	<div class="score2">
-	</div>
-	{% for match in matchs %}
-		<p>{{ match.team1}}</p>
-		<label id="score1">0</label>
-		<img id="less1" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
-		<img id="more1" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
-		<p>{{ match.team2}}</p>
-		<label id="score2">0</label>
-		<img id="less2" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
-		<img id="more2" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
-	{% endfor %}
+		<div class="scoreteam1">
+			<label id="score1">0</label>
+			<img id="less1" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
+			<img id="more1" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
+		</div>
+		<div class="scoreteam2">
+			<label id="score2">0</label>
+			<img id="less2" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
+			<img id="more2" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
+		</div>
 </div>
 {% endblock %}

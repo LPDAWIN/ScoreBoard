@@ -23,5 +23,11 @@
 	</div>
 	<div class="score2">
 	</div>
+	{% for match in matchs %}
+		<p>{{ match.team1}}</p>
+		<label id="score1">0</label>
+		<p>{{ match.team2}}</p>
+		<label id="score2">0</label>
+	{% endfor %}
 </div>
 {% endblock %}

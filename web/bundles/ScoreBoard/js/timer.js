@@ -1,20 +1,3 @@
-# This file is auto-generated during the composer install
-parameters:
-    database_driver: pdo_mysql
-    database_host: info-arie.iut.bx1
-    database_port: null
-    database_name: info_ftardieu
-    database_user: ftardieu
-    database_password: eAYAcmlq1XS7
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    locale: en
-    secret: ThisTokenIsNotSoSecretChangeIt
-
-
-
 $( function() {
 	var timerMath = new (function() {
 

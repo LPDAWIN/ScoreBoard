@@ -18,28 +18,29 @@ jQuery(function(){
 		i += 1;
 		score1.html(i);
 
-
 	});
 
 	//Ajoute Score 2 : + 1
 	ajout2.click(function(){
-		j += 1;
+		j+= 1;	
 		score2.html(j);
 	});
 
 	//Enleve Score 1 : - 1
 	less1.click(function(){
+		if(i > 0){
 		i -= 1;
 		score1.html(i);
-
+		}
 
 	});
 
 	//Enleve Score 2 : - 1
 	less2.click(function(){
+		if(j > 0){
 		j -= 1;
 		score2.html(j);
-
+		}
 
 	});
 

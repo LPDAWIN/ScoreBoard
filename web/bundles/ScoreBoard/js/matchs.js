@@ -4,6 +4,7 @@ jQuery(function(){
 	// Récupération variable
 	var score1 = $("#score1");
 	var score2 = $("#score2");
+	
 	var i = 0;
 	var j = 0;
 	score1.html(i);
@@ -13,8 +14,19 @@ jQuery(function(){
 	var less1 = $("#less1");
 	var less2 = $("#less2");
 
+	$('i').click(function(){
+		var btn = $(this).attr('id');
+			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
+
+		}, "json");
+
+
+	})
+
+
 	//Ajoute Score 1 : + 1
 	ajout1.click(function(){
+		
 		i += 1;
 		score1.html(i);
 

@@ -31,7 +31,7 @@ var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
 	<div class="Score">
 		<h2>Score</h2>
 			<div class="scoreteam1">
-				<label id="score1">{{ match.score1 }}</label>
+				<label id="score1" value="{{ match.score1 }}"></label>
 				<i id="less1" class="fa fa-minus"></i>
 				<i id="more1" class="fa fa-plus"></i>
 			</div>

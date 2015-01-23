@@ -70,6 +70,7 @@
 
 #less1, #less2, #more1, #more2 {
 	display: inline-block;
+	font-size: 30px;
 }
 
 .btn, .btn-sm, .btn-default {

@@ -1,5 +1,7 @@
 {% extends "ScoreBoardBundle::layout.html.twig" %}
 
+{% set activePage = 'match' %}
+
 {% block content %}
 <h1 class="contact">Page match</h1>
 <div class="Board">
@@ -11,8 +13,8 @@
 	<div class="timer">
 		<form id="timerform">
 			<span id ="countdown">Enter time</span>
-			<input class="btn btn-sm btn-default" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
-			<input class="btn btn-sm btn-default"type="button" value="Stop/Reset" onclick="timerMatch.resetCountdown();">
+			<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
+			<input class="btn btn-sm btn-primary"type="button" value="Reset" onclick="timerMatch.resetCountdown();">
 			<input type='text' name='startTime' placeholder="Temps : Mi-temps" style='width:150px;' />
 		</form>
 	</div>
@@ -26,13 +28,13 @@
 	<h2>Score</h2>
 		<div class="scoreteam1">
 			<label id="score1">0</label>
-			<img id="less1" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
-			<img id="more1" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
+			<i id="less1" class="fa fa-minus"></i>
+			<i id="more1" class="fa fa-plus"></i>
 		</div>
 		<div class="scoreteam2">
 			<label id="score2">0</label>
-			<img id="less2" src="{{ asset ('bundles/ScoreBoard/img/moins.png') }}">
-			<img id="more2" src="{{ asset ('bundles/ScoreBoard/img/plus.png') }}">
+			<i id="less2" class="fa fa-minus"></i>
+			<i id="more2" class="fa fa-plus"></i>
 		</div>
 </div>
 {% endblock %}

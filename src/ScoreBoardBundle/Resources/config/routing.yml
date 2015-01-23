@@ -3,7 +3,7 @@ home_ScoreBoard:
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:home }
 
 match_ScoreBoard:
-    path:     /match
+    path:     /match/{id}
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:match }
 
 contact_ScoreBoard:

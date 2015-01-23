@@ -5,6 +5,7 @@ namespace ScoreBoardBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
 
 class ScoreBoardController extends Controller
@@ -20,13 +21,18 @@ class ScoreBoardController extends Controller
 			'matchs' => $matchs));
 	}
 
-	public function matchAction()
+	public function matchAction(Matchs $match)
 	{
+		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-		$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findAll();
+		$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 
-		return $this->render('ScoreBoardBundle:Default:match.html.twig', array(
-			'matchs' => $matchs));
+		if ($request->isXmlHttpRequest()) {
+			return new JsonResponse($match);
+		} else {
+			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(	
+			'match' => $match));
+		}
 	}
 
 	public function contactAction()

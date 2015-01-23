@@ -3,9 +3,12 @@
 {% set activePage = 'match' %}
 
 {% block content %}
+<script>
+var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
+</script>
+
 <h1 class="contact">Page match</h1>
 <div class="Board">
-	{% for match in matchs %}
 	<div class="team1">
 		<h2>{{ match.team1}}</h2>
 		<img width="50px" height="50px" src="http://upload.wikimedia.org/wikipedia/fr/7/76/Logo_des_Girondins_de_Bordeaux.svg"/>
@@ -22,19 +25,21 @@
 		<h2>{{ match.team2}}</h2>
 		<img width="50px" height="50px" src="http://www.les-transferts.com/wp-content/uploads/2013/01/benfica.png" />
 	</div>
-{% endfor %}
+
 </div>
-<div class="Score">
-	<h2>Score</h2>
-		<div class="scoreteam1">
-			<label id="score1">0</label>
-			<i id="less1" class="fa fa-minus"></i>
-			<i id="more1" class="fa fa-plus"></i>
-		</div>
-		<div class="scoreteam2">
-			<label id="score2">0</label>
-			<i id="less2" class="fa fa-minus"></i>
-			<i id="more2" class="fa fa-plus"></i>
-		</div>
+<div class ="ajax">
+	<div class="Score">
+		<h2>Score</h2>
+			<div class="scoreteam1">
+				<label id="score1">{{ match.score1 }}</label>
+				<i id="less1" class="fa fa-minus"></i>
+				<i id="more1" class="fa fa-plus"></i>
+			</div>
+			<div class="scoreteam2">
+				<label id="score2">{{ match.score2 }}</label>
+				<i id="less2" class="fa fa-minus"></i>
+				<i id="more2" class="fa fa-plus"></i>
+			</div>
+	</div>
 </div>
-{% endblock %}
+{% endblock %}	

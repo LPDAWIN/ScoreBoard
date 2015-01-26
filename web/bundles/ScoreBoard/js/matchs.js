@@ -3,6 +3,8 @@ jQuery(function(){
 	
 	// Récupération variable
 	var score1 = $("#score1");
+
+	
 	var score2 = $("#score2");
 	
 	var i = 0;
@@ -13,6 +15,7 @@ jQuery(function(){
 	var ajout2 = $("#more2");
 	var less1 = $("#less1");
 	var less2 = $("#less2");
+		nb1=score1.html();
 
 	$('i').click(function(){
 		var btn = $(this).attr('id');
@@ -24,7 +27,7 @@ jQuery(function(){
 	})
 
 
-	//Ajoute Score 1 : + 1
+	/*//Ajoute Score 1 : + 1
 	ajout1.click(function(){
 		
 		i += 1;
@@ -54,7 +57,7 @@ jQuery(function(){
 		score2.html(j);
 		}
 
-	});
+	});*/
 
 
 });

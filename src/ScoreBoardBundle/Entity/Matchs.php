@@ -173,4 +173,32 @@ class Matchs
     {
         return date("H:i:s", $this->heureDepart->getTimestamp());
     }
+
+        /**
+     * Set duree
+     *
+     * @param time $heureDepart
+     * @return Match2
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * Get duree
+     *
+     * @return string 
+     */
+    public function getDuree()
+    {
+        return date("H:i:s", $this->duree->getTimestamp());
+    }
+
+
+
+
+
 }

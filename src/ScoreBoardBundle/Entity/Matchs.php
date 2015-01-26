@@ -5,7 +5,7 @@ namespace ScoreBoardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Matchs
+ * Match2
  */
 class Matchs
 {
@@ -34,6 +34,20 @@ class Matchs
      */
     private $score2;
 
+    /**
+     * @var time
+     */
+    private $heureDepart;
+
+    /**
+     * @var time
+     */
+    private $duree;
+
+    /**
+     * @var boolean
+     */
+    private $etat;
 
     /**
      * Get id
@@ -49,7 +63,7 @@ class Matchs
      * Set team1
      *
      * @param string $team1
-     * @return Matchs
+     * @return Match2
      */
     public function setTeam1($team1)
     {
@@ -72,7 +86,7 @@ class Matchs
      * Set team2
      *
      * @param string $team2
-     * @return Matchs
+     * @return Match2
      */
     public function setTeam2($team2)
     {
@@ -95,7 +109,7 @@ class Matchs
      * Set score1
      *
      * @param integer $score1
-     * @return Matchs
+     * @return Match2
      */
     public function setScore1($score1)
     {
@@ -118,7 +132,7 @@ class Matchs
      * Set score2
      *
      * @param integer $score2
-     * @return Matchs
+     * @return Match2
      */
     public function setScore2($score2)
     {
@@ -135,5 +149,28 @@ class Matchs
     public function getScore2()
     {
         return $this->score2;
+    }
+
+    /**
+     * Set heureDepart
+     *
+     * @param time $heureDepart
+     * @return Match2
+     */
+    public function setHeureDepart($heureDepart)
+    {
+        $this->heureDepart = $heureDepart;
+
+        return $this;
+    }
+
+    /**
+     * Get heureDepart
+     *
+     * @return string 
+     */
+    public function getHeureDepart()
+    {
+        return date("H:i:s", $this->heureDepart->getTimestamp());
     }
 }

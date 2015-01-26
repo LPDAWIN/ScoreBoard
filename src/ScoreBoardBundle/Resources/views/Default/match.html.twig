@@ -15,10 +15,10 @@ var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
 	</div>
 	<div class="timer">
 		<form id="timerform">
-			<span id ="countdown">Enter time</span>
+			<span id ="countdown">Waiting time</span>
 			<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
-			<input class="btn btn-sm btn-primary"type="button" value="Reset" onclick="timerMatch.resetCountdown();">
-			<input type='text' name='startTime' placeholder="Temps : Mi-temps" style='width:150px;' />
+			<input class="btn btn-sm btn-primary"type="button" value="Initialisation" onclick="timerMatch.resetCountdown();">
+			<input type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
 		</form>
 	</div>
 	<div class="team2">
@@ -31,7 +31,7 @@ var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
 	<div class="Score">
 		<h2>Score</h2>
 			<div class="scoreteam1">
-				<label id="score1" value="{{ match.score1 }}"></label>
+				<label id="score1">{{ match.score1 }}</label>
 				<i id="less1" class="fa fa-minus"></i>
 				<i id="more1" class="fa fa-plus"></i>
 			</div>

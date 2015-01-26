@@ -26,7 +26,7 @@ class ScoreBoardController extends Controller
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
 		$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
-
+		
 		if ($request->isXmlHttpRequest()) {
 			return new JsonResponse($match);
 		} else {

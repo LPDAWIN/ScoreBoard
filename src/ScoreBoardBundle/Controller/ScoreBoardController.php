@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class ScoreBoardController extends Controller
 {
@@ -62,10 +66,18 @@ class ScoreBoardController extends Controller
 		}
 
 
+=======
+		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
+		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
+		
+>>>>>>> 4c8e69ccad2d59eb30485996b1f81a2e6d6c714e
 		if ($request->isXmlHttpRequest()) {
-			return new JsonResponse($match);
+			// JSON Response 
+			$serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new XmlEncoder(), new JsonEncoder()));
+			$jsonContent = $serializer->serialize($match, 'json');
+			return new Response($jsonContent);
 		} else {
-			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(	
+			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
 			'match' => $match));
 		}
 	}
@@ -76,3 +88,5 @@ class ScoreBoardController extends Controller
 		return new Response($content);
 	}
 }
+
+

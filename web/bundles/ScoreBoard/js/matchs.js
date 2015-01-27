@@ -24,44 +24,10 @@ jQuery(function(){
 		}, "json");
 
 
-	})
 
-	$(add2).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-
-	})
-
-	$(less1).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-
-	})
-
-	$(less2).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-<<<<<<< HEAD
-	/*//Ajoute Score 1 : + 1
-	ajout1.click(function(){
-=======
-
-	})
-
-
-
-	/*Ajoute Score 1 : + 1
+	//Ajoute Score 1 : + 1
 	add1.click(function(){
->>>>>>> d16457eceb7babd57a9f1704917c3d338d9cf6f3
+
 		
 		i += 1;
 		score1.html(i);
@@ -90,7 +56,9 @@ jQuery(function(){
 		score2.html(j);
 		}
 
-	});*/
+	});
 
+
+	});
 
 });

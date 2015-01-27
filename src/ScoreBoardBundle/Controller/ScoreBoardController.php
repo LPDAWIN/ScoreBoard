@@ -29,7 +29,6 @@ class ScoreBoardController extends Controller
 	{
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-		$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		
 
 		if($request->getMethod()=='POST'){
@@ -66,11 +65,10 @@ class ScoreBoardController extends Controller
 		}
 
 
-=======
+
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
-		
->>>>>>> 4c8e69ccad2d59eb30485996b1f81a2e6d6c714e
+
 		if ($request->isXmlHttpRequest()) {
 			// JSON Response 
 			$serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new XmlEncoder(), new JsonEncoder()));

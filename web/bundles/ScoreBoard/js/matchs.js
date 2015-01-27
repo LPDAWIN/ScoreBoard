@@ -3,6 +3,8 @@ jQuery(function(){
 	
 	// Récupération variable
 	var score1 = $("#score1");
+
+	
 	var score2 = $("#score2");
 	//alert(score1.html());
 	var i = 0;
@@ -13,6 +15,7 @@ jQuery(function(){
 	var add2 = $("#more2");
 	var less1 = $("#less1");
 	var less2 = $("#less2");
+		nb1=score1.html();
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
@@ -21,39 +24,10 @@ jQuery(function(){
 		}, "json");
 
 
-	})
 
-	$(add2).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-
-	})
-
-	$(less1).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-
-	})
-
-	$(less2).click(function(){
-		var btn = $(this).attr('id');
-			$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
-
-		}, "json");
-
-
-	})
-
-
-
-	/*Ajoute Score 1 : + 1
+	//Ajoute Score 1 : + 1
 	add1.click(function(){
+
 		
 		i += 1;
 		score1.html(i);
@@ -82,7 +56,9 @@ jQuery(function(){
 		score2.html(j);
 		}
 
-	});*/
+	});
 
+
+	});
 
 });

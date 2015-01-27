@@ -4,7 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "9c87a1727f4e9c843fe92de2f97e78ee",
+=======
+    "hash": "744cc925c3cb09c576d8b620bb5fb2e8",
+>>>>>>> 2d3555e28088b65da0c3e83be64410a81968986e
     "packages": [
         {
             "name": "doctrine/annotations",

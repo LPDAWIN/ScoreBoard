@@ -1,7 +1,7 @@
 jQuery(function(){
 
-
-	
+	// var match_url =$('match_url')
+	// Routing.generate(match_url.html());
 	
 	// Récupération variable
 	var score1 = $("#score1");
@@ -16,8 +16,6 @@ jQuery(function(){
 		$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
 
 		}, "json");
-
-
 	})
 
 
@@ -40,21 +38,15 @@ jQuery(function(){
 	//Enleve Score 1 : - 1
 	less1.click(function(){
 		var i = parseInt(score1.html());
-		if(i > 0){
 		i -= 1;
 		score1.html(i);
-		}
-
 	});
 
 	//Enleve Score 2 : - 1
 	less2.click(function(){
 		var j = parseInt(score2.html());
-		if(j > 0){
 		j -= 1;
 		score2.html(j);
-		}
-
 	});
 
 

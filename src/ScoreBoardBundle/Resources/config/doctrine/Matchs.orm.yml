@@ -20,9 +20,9 @@ ScoreBoardBundle\Entity\Matchs:
         score2:
             type: integer
         heureDepart:
-            type: time
+            type: datetime
         duree:
-            type: time
+            type: integer
         etat:
             type: boolean
     lifecycleCallbacks: {  }

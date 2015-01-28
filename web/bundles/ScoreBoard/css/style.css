@@ -1,17 +1,10 @@
 .Board {
-	width : 900px;
-	display: block;
-	margin: auto;
 	text-align: center;
 }
 
 .team1, .team2, .timer {
 	display: inline-block;
 	margin-top: 50px;
-}
-
-.team1 h2, .team2 h2 {
-	font-size: 150%;
 }
 
 .team1, .team2 {
@@ -27,12 +20,6 @@
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 4px;
-}
-
-#countdown {
-	clear: both;
-	display: block;
-	margin-bottom: 10px;
 }
 
 .timer input {
@@ -69,7 +56,6 @@
 }
 
 #less1, #less2, #more1, #more2 {
-	display: inline-block;
 	font-size: 30px;
 }
 

@@ -70,11 +70,12 @@ class ScoreBoardController extends Controller
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 
+		$now = new \DateTime;
+		var_dump($now->getTimestamp()-$match->getHeureDepart()->getTimestamp()); exit(0);
+
 		if ($request->isXmlHttpRequest()) {
-			// JSON Response 
-			$serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new XmlEncoder(), new JsonEncoder()));
-			$jsonContent = $serializer->serialize($match, 'json');
-			return new Response($jsonContent);
+			// JSON Response ;
+			return new JsonResponse($match->toArray());
 		} else {
 			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
 			'match' => $match));

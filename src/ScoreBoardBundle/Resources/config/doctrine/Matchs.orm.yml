@@ -21,6 +21,7 @@ ScoreBoardBundle\Entity\Matchs:
             type: integer
         heureDepart:
             type: datetime
+            nullable: yes
         duree:
             type: integer
         etat:

@@ -1,5 +1,5 @@
 home_ScoreBoard:
-    path:     /home
+    path:     /
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:home }
 
 match_ScoreBoard:

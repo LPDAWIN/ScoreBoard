@@ -219,4 +219,18 @@ class Matchs
     {
         return $this->etat;
     }
+
+    public function toArray()
+    {
+        $now = new \DateTime;
+        return array(
+            'team1' => $this->getTeam1(),
+            'team2' => $this->getTeam2(),
+            'score1' => $this->getScore1(),
+            'score2' => $this->getScore2(),
+            'heureDepart' => $this->getHeureDepart(),
+            'duree' => $this->getDuree(),
+            'elapsed' => $now->getTimestamp()-$this->getHeureDepart()->getTimestamp()
+        );
+    }
 }

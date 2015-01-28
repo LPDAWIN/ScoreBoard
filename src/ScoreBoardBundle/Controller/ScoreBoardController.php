@@ -30,9 +30,12 @@ class ScoreBoardController extends Controller
 	{
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
+
 		
+		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
+
 			if($request->get('btn')=='more1'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => '2'));
 				$score = $update->getScore1();
@@ -62,6 +65,15 @@ class ScoreBoardController extends Controller
 				$update->setScore2($score4);
 				$em->flush();
 			}
+			//console.log($request->get('btn'));
+			if($request->get('btn')=='play'){
+				$id = $request->get('id');
+				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				 $newMatch->setHeureDepart($now);
+				 $em->flush();
+			}
+
+
 			
 		}
 
@@ -70,8 +82,8 @@ class ScoreBoardController extends Controller
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 
-		$now = new \DateTime;
-		var_dump($now->getTimestamp()-$match->getHeureDepart()->getTimestamp()); exit(0);
+		
+		//var_dump($now->getTimestamp()-$match->getHeureDepart()->getTimestamp()); exit(0);
 
 		if ($request->isXmlHttpRequest()) {
 			// JSON Response ;
@@ -91,6 +103,7 @@ class ScoreBoardController extends Controller
 	public function createAction()
 	{
 	$em = $this->getDoctrine()->getEntityManager();
+	$now = new \DateTime;
 
     $m = new Matchs();
 	$form = $this->createForm(new MatchsType);
@@ -102,6 +115,7 @@ class ScoreBoardController extends Controller
 		$m->setScore1(0);
 		$m->setScore2(0);
 		$m->setDuree(0);
+		$m->setHeureDepart($now);
 		$m->setEtat(false);
 		$em->persist($m);
 		$em->flush();

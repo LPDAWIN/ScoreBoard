@@ -13,7 +13,7 @@ jQuery(function(){
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
-		$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
+		$.post(Routing.generate('match_ScoreBoard', {id: match_url}), {'btn':btn}, function(data, textStatus) {
 
 		}, "json");
 	})

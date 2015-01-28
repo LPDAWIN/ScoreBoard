@@ -3,14 +3,17 @@
 {% set activePage = 'home' %}
 
 {% block content %}
-	<h1 class="test">Bienvenue</h1>
-
-	<p> Vous pouvez ici créer votre match, projeter un écran avec le score et la timélie ainsi qu'un autre écran pour l'arbitre afin de gérer le score et les différents éléments qui seront affichés. dans la timeline</p>
-		<table id="tableaumatchs">
+<div class="container theme-showcase" role="main">
+	<div class="jumbotron">
+		<div class="well">
+			<h1>Bienvenue</h1>
+			<p> Vous pouvez ici créer votre match, projeter un écran avec le score et la timélie ainsi qu'un autre écran pour l'arbitre afin de gérer le score et les différents éléments qui seront affichés. dans la timeline</p>
+		</div>
+		<table class="table table-bordered">
 			<tr>
-				<th id="Number">Numéro</th>
-				<th id="matchs">Matchs</th>
-				<th id="boutton">Voir</th>
+				<th>Numéro</th>
+				<th>Matchs</th>
+				<th>Voir</th>
 			</tr>
 			{% for match in matchs %}
 			<tr>
@@ -20,4 +23,6 @@
 			</tr>
 		   {% endfor %}
 		</table>
+	</div>
+</div>
 {% endblock %}

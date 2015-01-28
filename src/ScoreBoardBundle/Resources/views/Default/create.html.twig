@@ -3,14 +3,26 @@
 {% set activePage = 'match' %}
 
 {% block content %}
+<div class="container theme-showcase" role="main">
+	<div class="jumbotron">
+		<div class="well">
+			<h1>Création de match</h1>
+			<p>Ici vous pouvez créer un match en sélectionnant les deux équipes qui participent au match.</p>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Formulaire de création de match</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ path("creation_ScoreBoard") }}" method="post">
 
-<div id="creer_maths">
-    <form action="{{ path("creation_ScoreBoard") }}" method="post">
-
-      {{ form_widget(form) }}
-      
-      <input type="submit" name="Envoie" value="Créer" />
-    </form>
+		      	{{ form_widget(form) }}
+		      
+		      	<input type="submit" name="Envoie" value="Créer" />
+		    	</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

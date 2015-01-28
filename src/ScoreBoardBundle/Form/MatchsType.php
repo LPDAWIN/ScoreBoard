@@ -21,7 +21,7 @@ class MatchsType extends AbstractType
             ->add('score2')
             ->add('heureDepart')
             ->add('duree')
-            ->add('etat', 'false', array('required' => false))
+            ->add('etat')
         ;
     }
     

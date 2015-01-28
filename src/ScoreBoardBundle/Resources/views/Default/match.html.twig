@@ -18,7 +18,7 @@ var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
 			<span id ="countdown">Waiting initialisation</span>
 			<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
 			<input class="btn btn-sm btn-primary"type="button" value="Initialisation" onclick="timerMatch.resetCountdown();">
-			<input type='text' name='startTime' placeholder="Enter your time" style='width:150px;' value={{ match.duree }} />
+			<input type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
 		</form>
 	</div>
 	<div class="team2">

@@ -171,7 +171,7 @@ class Matchs
      */
     public function getHeureDepart()
     {
-        return date("H:i:s", $this->heureDepart->getTimestamp());
+        return $this->heureDepart;
     }
 
         /**
@@ -194,11 +194,29 @@ class Matchs
      */
     public function getDuree()
     {
-        return date("H:i:s", $this->duree->getTimestamp());
+        return $this->duree;
     }
 
+        /**
+     * Set etat
+     *
+     * @param boolean $etat
+     * @return etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
 
+        return $this;
+    }
 
-
-
+    /**
+     * Get etat
+     *
+     * @return boolean 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
 }

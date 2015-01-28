@@ -95,12 +95,15 @@ class ScoreBoardController extends Controller
 			'match' => $match));
 		}
 	}
+}
 
 	public function contactAction()
 	{
 		$content = $this->get('templating')->render('ScoreBoardBundle:Default:contact.html.twig');
 		return new Response($content);
 	}
+
+
 
 	public function createAction()
 	{

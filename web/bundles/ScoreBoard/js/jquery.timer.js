@@ -25,7 +25,7 @@
 			if(!this.isActive) {
 				if(reset) {this.setTimer();}
 				else {this.setTimer(this.remaining);}
-				this.isActive = true;
+				this.isActive = true;	
 			}
 			return this;
 		};

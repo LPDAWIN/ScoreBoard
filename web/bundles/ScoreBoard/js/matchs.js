@@ -23,7 +23,6 @@ jQuery(function(){
 
 	//Ajoute Score 1 : + 1
 	add1.click(function(){
-
 		var i = parseInt(score1.html());
 		i += 1;
 		score1.html(i);

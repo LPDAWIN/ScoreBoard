@@ -77,3 +77,20 @@
 	margin:auto;
 	margin-bottom: 10px;
 }
+
+#tableaumachs, tr, th, td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+#Number {
+	width: 10%;
+}
+
+#matchs {
+	width: 70%;
+}
+
+#boutton {
+	width: 20%;
+}

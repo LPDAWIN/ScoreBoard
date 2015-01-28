@@ -1,0 +1,16 @@
+{% extends "ScoreBoardBundle::layout.html.twig" %}
+
+{% set activePage = 'match' %}
+
+{% block content %}
+
+<div id="creer_maths">
+    <form action="{{ path("creation_ScoreBoard") }}" method="post">
+
+      {{ form_widget(form) }}
+      
+      <input type="submit" name="Envoie" value="Créer" />
+    </form>
+</div>
+
+{% endblock %}

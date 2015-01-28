@@ -35,8 +35,6 @@ class ScoreBoardController extends Controller
 		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
-
-		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
 
 			if($request->get('btn')=='more1'){
@@ -74,12 +72,8 @@ class ScoreBoardController extends Controller
 				 $newMatch->setHeureDepart($now);
 				 $em->flush();
 			}
-
-
-			
+	
 		}
-
-
 
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
@@ -94,7 +88,7 @@ class ScoreBoardController extends Controller
 			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
 			'match' => $match));
 		}
-	}
+	
 }
 
 	public function contactAction()

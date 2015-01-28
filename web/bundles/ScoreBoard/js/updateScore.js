@@ -5,7 +5,7 @@ $(function(){
      var countdown = $("#countdown"); 
     // var startTime = $("#startTime") ;
     function maFuction(){
-        $.getJSON(match_url).success(function(data){
+        $.getJSON(match_id).success(function(data){
         score1.html(data.score1);
         score2.html(data.score2);
 

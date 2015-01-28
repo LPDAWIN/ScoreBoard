@@ -1,8 +1,10 @@
 jQuery(function(){
 
 	// var match_url =$('match_url')
-	// Routing.generate(match_url.html());
 	
+	//alert(Routing.generate('match_ScoreBoard',{id:match_id}));
+	//alert(match_id); 
+
 	// Récupération variable
 	var score1 = $("#score1");
 	var score2 = $("#score2");
@@ -13,7 +15,7 @@ jQuery(function(){
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
-		$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
+		$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn}, function(data, textStatus) {
 
 		}, "json");
 	})

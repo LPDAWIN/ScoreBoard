@@ -97,12 +97,15 @@ class ScoreBoardController extends Controller
 	$request = $this->getRequest();
 	if ($request->isMethod('POST')){
 		$form->handleRequest($request);
-
 		$m = $form->getData();
+		$m->setScore1(0);
+		$m->setScore2(0);
+		$m->setDuree(0);
+		$m->setEtat(false);
 		$em->persist($m);
 		$em->flush();
 
-		return $this->redirect($this->generateUrl("creation_ScoreBoard"));
+		return $this->redirect("match/".$m->getID());
 	}
 		return $this->render('ScoreBoardBundle:Default:create.html.twig', array(
 			'form' => $form->createView()));

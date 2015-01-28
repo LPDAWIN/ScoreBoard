@@ -30,18 +30,22 @@ class ScoreBoardController extends Controller
 	{
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
+
 		
+		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
+			$id = $request->get('id');
+
 			if($request->get('btn')=='more1'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => '2'));
+				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score = $update->getScore1();
 				$score += 1;
 				$update->setScore1($score);
 				$em->flush();
 			}
 			if($request->get('btn')=='more2'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => '2'));
+				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score2 = $update->getScore2();
 				$score2 += 1;
 				$update->setScore2($score2);
@@ -49,37 +53,43 @@ class ScoreBoardController extends Controller
 			}
 
 			if($request->get('btn')=='less1'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => '2'));
+				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score3 = $update->getScore1();
 				$score3 -= 1;
 				$update->setScore1($score3);
 				$em->flush();
 			}
 			if($request->get('btn')=='less2'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => '2'));
+				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score4 = $update->getScore2();
 				$score4 -= 1;
 				$update->setScore2($score4);
 				$em->flush();
 			}
-			
+			if($request->get('btn')=='play'){
+				$id = $request->get('id');
+				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				 $newMatch->setHeureDepart($now);
+				 $em->flush();
+			}
+	
 		}
-
-
 
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 
+		
+		//var_dump($now->getTimestamp()-$match->getHeureDepart()->getTimestamp()); exit(0);
+
 		if ($request->isXmlHttpRequest()) {
-			// JSON Response 
-			$serializer = new Serializer(array(new GetSetMethodNormalizer()), array(new XmlEncoder(), new JsonEncoder()));
-			$jsonContent = $serializer->serialize($match, 'json');
-			return new Response($jsonContent);
+			// JSON Response ;
+			return new JsonResponse($match->toArray());
 		} else {
 			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
 			'match' => $match));
 		}
-	}
+	
+}
 
 	public function contactAction()
 	{
@@ -87,9 +97,12 @@ class ScoreBoardController extends Controller
 		return new Response($content);
 	}
 
+
+
 	public function createAction()
 	{
 	$em = $this->getDoctrine()->getEntityManager();
+	$now = new \DateTime;
 
     $m = new Matchs();
 	$form = $this->createForm(new MatchsType);
@@ -101,6 +114,7 @@ class ScoreBoardController extends Controller
 		$m->setScore1(0);
 		$m->setScore2(0);
 		$m->setDuree(0);
+		$m->setHeureDepart($now);
 		$m->setEtat(false);
 		$em->persist($m);
 		$em->flush();

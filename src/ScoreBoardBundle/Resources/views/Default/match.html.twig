@@ -3,8 +3,9 @@
 {% set activePage = 'match' %}
 
 {% block content %}
+
 <script>
-var match_url="{{ path('match_ScoreBoard', {id: match.id}) }}";
+var match_id ="{{ match.id }}";
 </script>
 
 <h1 class="contact">Page match</h1>

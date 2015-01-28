@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
+use ScoreBoardBundle\Form\MatchsType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -84,6 +85,27 @@ class ScoreBoardController extends Controller
 	{
 		$content = $this->get('templating')->render('ScoreBoardBundle:Default:contact.html.twig');
 		return new Response($content);
+	}
+
+	public function createAction()
+	{
+	$em = $this->getDoctrine()->getEntityManager();
+
+    $m = new Matchs();
+	$form = $this->createForm(new MatchsType);
+
+	$request = $this->getRequest();
+	if ($request->isMethod('POST')){
+		$form->handleRequest($request);
+
+		$m = $form->getData();
+		$em->persist($m);
+		$em->flush();
+
+		return $this->redirect($this->generateUrl("creation_ScoreBoard"));
+	}
+		return $this->render('ScoreBoardBundle:Default:create.html.twig', array(
+			'form' => $form->createView()));
 	}
 }
 

@@ -30,18 +30,15 @@ class ScoreBoardController extends Controller
 	{
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-<<<<<<< HEAD
 
 		
 		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
 
-=======
-
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
->>>>>>> d2b93b4d1f7d4f2a733e99f8d4d5905dfae888e0
+
 			if($request->get('btn')=='more1'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score = $update->getScore1();
@@ -71,7 +68,6 @@ class ScoreBoardController extends Controller
 				$update->setScore2($score4);
 				$em->flush();
 			}
-			//console.log($request->get('btn'));
 			if($request->get('btn')=='play'){
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));

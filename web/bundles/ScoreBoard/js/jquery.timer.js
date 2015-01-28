@@ -25,8 +25,8 @@
 	 	};
 		this.play = function(reset) {
 			var btn="play";
-			$.post(Routing.generate('match_ScoreBoard', {id: match_url}), {'btn':btn}, function(data, textStatus) {
-				console.log(Routing.generate('match_ScoreBoard', {id: match_url}))
+			$.post(Routing.generate('match_ScoreBoard', {id: match_id}), {'btn':btn}, function(data, textStatus) {
+				console.log(Routing.generate('match_ScoreBoard', {id: match_id}))
 				console.log(btn);
 			});
 			if(!this.isActive) {

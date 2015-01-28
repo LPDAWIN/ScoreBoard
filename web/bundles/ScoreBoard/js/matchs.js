@@ -15,12 +15,7 @@ jQuery(function(){
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
-<<<<<<< HEAD
-		$.post(Routing.generate('match_ScoreBoard', {id: match_url}), {'btn':btn}, function(data, textStatus) {
-=======
 		$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn}, function(data, textStatus) {
->>>>>>> d2b93b4d1f7d4f2a733e99f8d4d5905dfae888e0
-
 		}, "json");
 	})
 

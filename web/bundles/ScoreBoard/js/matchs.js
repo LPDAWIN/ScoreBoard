@@ -1,6 +1,6 @@
 jQuery(function(){
 
-	
+
 	
 	
 	// Récupération variable
@@ -13,7 +13,7 @@ jQuery(function(){
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
-		$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match', {'btn':btn}, function(data, textStatus) {
+		$.post('http://localhost:8888/www/Scoreboard/web/app_dev.php/match/2', {'btn':btn}, function(data, textStatus) {
 
 		}, "json");
 

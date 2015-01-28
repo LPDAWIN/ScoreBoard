@@ -16,7 +16,7 @@
 			<tr>
 				<td>{{ loop.index }}</td>
 				<td>{{ match.team1 }} VS {{ match.team2 }}</td>
-				<td><input class="btn btn-sm btn-primary" type="button" value="Voir"/></td>
+				<td><a href="{{ path('match_ScoreBoard', {id: match.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Voir"/></a></td>
 			</tr>
 		   {% endfor %}
 		</table>

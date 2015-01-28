@@ -17,11 +17,6 @@ class MatchsType extends AbstractType
         $builder
             ->add('team1')
             ->add('team2')
-            ->add('score1')
-            ->add('score2')
-            ->add('heureDepart')
-            ->add('duree')
-            ->add('etat')
         ;
     }
     

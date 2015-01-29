@@ -2,10 +2,6 @@
 	var btn;
 	$.timer = function(func, time, autostart) {	
 	 	this.set = function(func, time, autostart) {
-<<<<<<< HEAD
-=======
-	 		//alert("init");
->>>>>>> 1dba026d11747a82dec6a23d1a3c40839e59e36d
 	 		this.init = true;
 	 	 	if(typeof func == 'object') {
 		 	 	var paramList = ['autostart', 'time'];
@@ -24,12 +20,7 @@
 		 	return this;
 	 	};
 	 	this.once = function(time) {
-<<<<<<< HEAD
-	 	
-	 		btn = "once";
-=======
-	 		//alert("once");
->>>>>>> 1dba026d11747a82dec6a23d1a3c40839e59e36d
+
 			var timer = this;
 	 	 	if(isNaN(time)) {time = 0;}
 			window.setTimeout(function() {
@@ -51,11 +42,7 @@
 			return this;
 		};
 		this.pause = function() {
-<<<<<<< HEAD
-			
-=======
-			//alert("pause");
->>>>>>> 1dba026d11747a82dec6a23d1a3c40839e59e36d
+
 			if(this.isActive) {
 				this.isActive = false;
 				this.remaining -= new Date() - this.last;
@@ -64,11 +51,6 @@
 			return this;
 		};
 		this.stop = function() {
-<<<<<<< HEAD
-			
-=======
-			//alert("stop");
->>>>>>> 1dba026d11747a82dec6a23d1a3c40839e59e36d
 			this.isActive = false;
 			this.remaining = this.intervalTime;
 			
@@ -84,11 +66,7 @@
 			return this;
 		};
 		this.reset = function() {
-<<<<<<< HEAD
-			
-=======
-			//alert("reset");
->>>>>>> 1dba026d11747a82dec6a23d1a3c40839e59e36d
+
 			this.isActive = false;
 			this.play(true);
 			return this;

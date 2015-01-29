@@ -40,10 +40,9 @@ var timerMatch = new (function() {
         {
             currentTime = newTime;
             var duree=currentTime/6000;
-            var btn="init";
-            console.log(Routing.generate('match_ScoreBoard',{id:match_id}));
-            $.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn},{'duree':duree}, function(data, textStatus) {
-               
+            var btn="initi";
+            $.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn,'duree':duree}, function(data, textStatus) {
+               console.log(duree);
                alert(duree);
              }, "json");
         }

@@ -1,5 +1,5 @@
 $(function(){
-     maFuction();
+    maFuction();
     var score1 = $("#score1");
     var score2 = $("#score2");
      var countdown = $("#countdown"); 

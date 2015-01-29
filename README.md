@@ -13,5 +13,11 @@ Tout d’abord ce projet à pour but de mettre des élèves en condition réel d
 L’installation 
 ——————————————
 
-L’installation est des plus basique, il suffit de cloner le dépôt Github, chan
+L’installation est des plus basique, il suffit de cloner le dépôt Github en local.
+
+Installer composer car le projet est réalisé sous symfony.
+
+Changer vos login , 
+
+
   

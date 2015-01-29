@@ -23,7 +23,7 @@ ScoreBoardBundle\Entity\Matchs:
             type: datetime
             nullable: yes
         duree:
-            type: integer
+            type: float
         etat:
             type: boolean
     lifecycleCallbacks: {  }

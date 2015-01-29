@@ -28,10 +28,11 @@ class ScoreBoardController extends Controller
 
 	public function matchAction(Matchs $match)
 	{
+
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
 
-		echo $request->get('duree');
+		
 		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
@@ -73,11 +74,20 @@ class ScoreBoardController extends Controller
 				 $em->flush();
 			}
 			if($request->get('btn')=='initi'){
-				echo"qdsqnoqsdqsdqdsqdsdqsqdsqs";
+			
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				$newMatch->setDuree($request->get('duree'));
 				$em->flush();
+			}
+			if($request->get('btn')=='pause')
+			{
+				$id = $request->get('id');
+				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				$duree = $newMatch->getDuree();
+				$dureeEcoule = $request->get('elasped')/60;
+				$newMatch->setDuree($duree-$dureeEcoule);
+				$em->flush();	
 			}
 	
 		}

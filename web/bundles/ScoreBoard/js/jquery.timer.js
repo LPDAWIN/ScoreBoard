@@ -42,11 +42,22 @@
 			return this;
 		};
 		this.pause = function() {
+			var DureeElapsed;
 
 			if(this.isActive) {
+				$.getJSON(match_id).success(function(data){
+					DureeElapsed = data.elapsed ;
+					
+					btn="pause";
+					$.post(Routing.generate('match_ScoreBoard', {id: match_id}), {'btn':btn,'elasped':DureeElapsed}, function(data, textStatus) {
+				
+					});
+					
+				});
+
 				this.isActive = false;
 				this.remaining -= new Date() - this.last;
-				this.clearTimer();
+				this.clearTimer();	
 			}
 			return this;
 		};

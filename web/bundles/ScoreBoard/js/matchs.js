@@ -16,6 +16,7 @@ jQuery(function(){
 	$("i").click(function(){
 		var btn = $(this).attr('id');
 		$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn}, function(data, textStatus) {
+			
 		}, "json");
 	})
 

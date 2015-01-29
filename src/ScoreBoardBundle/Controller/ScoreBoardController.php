@@ -31,7 +31,7 @@ class ScoreBoardController extends Controller
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
 
-		
+		echo $request->get('duree') ;
 		$now = new \DateTime;
 
 		if($request->getMethod()=='POST'){
@@ -71,6 +71,14 @@ class ScoreBoardController extends Controller
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				 $newMatch->setHeureDepart($now);
 				 $em->flush();
+			}
+			if($request->get('btn')=='init'){
+
+				$id = $request->get('id');
+				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				
+				$newMatch->setDuree($request->get('duree'));
+				$em->flush();
 			}
 	
 		}

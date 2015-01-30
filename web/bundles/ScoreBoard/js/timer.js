@@ -31,28 +31,13 @@ var timerMatch = new (function() {
             });
         };
     this.resetCountdown = function() {
-        var countdown = $("#countdown"); 
-        if($form.find('input[type=text]').val() > 1)
-        {
-            alert('connard');
-            var newTime = parseInt($form.find('input[type=text]').val()) * 6000;
-        }
-        else
-        {
-            alert('allo');
-            console.log(countdown.text());
-             var newTime = countdown.text() ;
-
-        }
-
+        var newTime = parseInt($form.find('input[type=text]').val()) * 6000;
         if (newTime > 0) 
         {
             currentTime = newTime;
             var duree=currentTime/6000;
             var btn="initi";
             $.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn,'duree':duree}, function(data, textStatus) {
-               
-               
              }, "json");
         }
       

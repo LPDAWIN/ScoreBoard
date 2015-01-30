@@ -24,7 +24,7 @@ var match_id ="{{ match.id }}";
 					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" onclick="timerMatch.Timer.toggle();">
 					<input class="btn btn-sm btn-primary"type="button" value="Initialisation" onclick="timerMatch.resetCountdown();">
-					<input type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
+					<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
 					{% endif %}
 				</form>
 			</div>

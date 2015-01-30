@@ -10,26 +10,27 @@ $(function(){
         score2.html(data.score2);
 
        //Recuperation de l'heure de départ, la duréee  et de la date
-        var hp= data.heureDepart;
+        var hp = data.heureDepart;
         var uneDate = new Date(); 
         var duree = data.duree ;
         var secondsDuree = duree*60;
         var laDuree = data.elapsed;
-        var dureeFinal= secondsDuree - laDuree   ;
+        var dureeFinal= secondsDuree - laDuree;
         var d = formatDuree(dureeFinal);
+        console.log("dureeElapsed: " + laDuree);
         console.log("durée Final : " + d);
-        var cd = countdown.text();
-        
+      //  var cd = countdown.text();
 
-        
-
-        if(cd != d)
+       /* if(cd != d)
         {
+            console.log("cd != d");
            
             countdown.html(d);
-            var cd = countdown.text();
-            //timerMatch.Timer.set(timerMatch.time,d,true);
-        }
+            cd = countdown.text();
+            console.log("countdown :" + cd);
+          //  timerMatch.Timer.set(timerMatch.time,d,true);
+            timerMatch.Timer.stop().once();
+        }*/
         
 
 

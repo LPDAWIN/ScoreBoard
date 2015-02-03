@@ -11,7 +11,9 @@ jQuery(function(){
 	var add1 = $("#more1");
 	var add2 = $("#more2");
 	var less1 = $("#less1");
+	var $form = $('#timerform');
 	var less2 = $("#less2");
+	var countdown = $("#countdown"); 
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
@@ -19,6 +21,15 @@ jQuery(function(){
 			
 		}, "json");
 	})
+
+
+	$("input[type=button]").click(function(){
+		var btn = $(this).attr('id');
+		var duree = $form.find('input[type=text]').val();
+			$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn, 'duree':duree,'timeLeft':timeLeft}, function(data, textStatus) {
+				alert(btn);
+		}, "json");
+	});
 
 
 	//Ajoute Score 1 : + 1
@@ -49,6 +60,11 @@ jQuery(function(){
 		j -= 1;
 		score2.html(j);
 	});
+
+
+
+setTimeout(function() {}, 10);
+
 
 
 });

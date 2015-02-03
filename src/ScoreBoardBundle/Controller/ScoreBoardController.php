@@ -67,30 +67,36 @@ class ScoreBoardController extends Controller
 				$update->setScore2($score4);
 				$em->flush();
 			}
-			if($request->get('btn')=='play'){
+			if($request->get('btn')=='btnPlay'){
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				 $newMatch->setHeureDepart($now);
-				 $em->flush();
+				if(!($newMatch->getEtat()))
+				{
+					$newMatch->setHeureDepart($now);
+					$newMatch->setEtat(true);
+					$em->flush();
+				}
+				else
+				{				
+					$newMatch->setEtat(false);
+					$duree = $newMatch->getDuree();
+					$dureeEcoule =$newMatch->getTimeLeft();
+					$newMatch->setDuree($duree-$dureeEcoule);
+					$em->flush();	
+				}
+
+
 			}
-			if($request->get('btn')=='initi'){
-			
+			if($request->get('btn')=='btnInit'){
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				$newMatch->setDuree($request->get('duree'));
 				$em->flush();
 			}
-			if($request->get('btn')=='pause')
-			{
-				$id = $request->get('id');
-				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				$duree = $newMatch->getDuree();
-				$dureeEcoule = $request->get('elasped')/60;
-				$newMatch->setDuree($duree-$dureeEcoule);
-				$em->flush();	
-			}
-	
+
 		}
+
+	
 
 		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());

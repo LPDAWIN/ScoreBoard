@@ -220,9 +220,27 @@ class Matchs
         return $this->etat;
     }
 
+    public function getTimeLeft()
+    {
+        if ($this->getEtat()==1)
+        {
+            $now = new \DateTime;
+            $elapsed = $now->getTimestamp()-$this->getHeureDepart()->getTimestamp();
+            $duree = $this->getDuree()*60 - $elapsed ;
+
+            return $duree;
+        }
+        else
+        {
+            return $this->getDuree();
+        }
+    }
+
+
+
     public function toArray()
     {
-        $now = new \DateTime;
+        
         return array(
             'team1' => $this->getTeam1(),
             'team2' => $this->getTeam2(),
@@ -230,7 +248,8 @@ class Matchs
             'score2' => $this->getScore2(),
             'heureDepart' => $this->getHeureDepart(),
             'duree' => $this->getDuree(),
-            'elapsed' => $now->getTimestamp()-$this->getHeureDepart()->getTimestamp()
+            'etat' => $this->getEtat(),
+            'timeLeft' => $this->getTimeLeft()
         );
     }
 }

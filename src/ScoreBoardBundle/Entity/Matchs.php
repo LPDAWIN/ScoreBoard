@@ -225,7 +225,7 @@ class Matchs
             'etat' => $this->getEtat(),
             'timeLeft' => $this->getTimeLeft()
         );
-
+     }
     /**
      * Get teamA_id
      *

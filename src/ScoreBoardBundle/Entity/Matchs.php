@@ -5,49 +5,68 @@ namespace ScoreBoardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Match2
+ * Matchs
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ScoreBoardBundle\Entity\MatchsRepository")
  */
 class Matchs
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
-     */
-    private $team1;
-
-    /**
-     * @var string
-     */
-    private $team2;
-
-    /**
      * @var integer
+     *
+     * @ORM\Column(name="score1", type="integer")
      */
     private $score1;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="score2", type="integer")
      */
     private $score2;
 
     /**
-     * @var time
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heureDepart", type="datetime")
      */
     private $heureDepart;
 
     /**
-     * @var time
+     * @var integer
+     *
+     * @ORM\Column(name="duree", type="integer")
      */
     private $duree;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="etat", type="boolean")
      */
     private $etat;
+
+    /**
+   * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Team")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $teamA;
+
+    /**
+   * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Team")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $teamB;
 
     /**
      * Get id
@@ -60,61 +79,15 @@ class Matchs
     }
 
     /**
-     * Set team1
-     *
-     * @param string $team1
-     * @return Match2
-     */
-    public function setTeam1($team1)
-    {
-        $this->team1 = $team1;
-
-        return $this;
-    }
-
-    /**
-     * Get team1
-     *
-     * @return string 
-     */
-    public function getTeam1()
-    {
-        return $this->team1;
-    }
-
-    /**
-     * Set team2
-     *
-     * @param string $team2
-     * @return Match2
-     */
-    public function setTeam2($team2)
-    {
-        $this->team2 = $team2;
-
-        return $this;
-    }
-
-    /**
-     * Get team2
-     *
-     * @return string 
-     */
-    public function getTeam2()
-    {
-        return $this->team2;
-    }
-
-    /**
      * Set score1
      *
      * @param integer $score1
-     * @return Match2
+     * @return Matchs
      */
     public function setScore1($score1)
     {
         $this->score1 = $score1;
-
+    
         return $this;
     }
 
@@ -132,12 +105,12 @@ class Matchs
      * Set score2
      *
      * @param integer $score2
-     * @return Match2
+     * @return Matchs
      */
     public function setScore2($score2)
     {
         $this->score2 = $score2;
-
+    
         return $this;
     }
 
@@ -154,59 +127,59 @@ class Matchs
     /**
      * Set heureDepart
      *
-     * @param time $heureDepart
-     * @return Match2
+     * @param \DateTime $heureDepart
+     * @return Matchs
      */
     public function setHeureDepart($heureDepart)
     {
         $this->heureDepart = $heureDepart;
-
+    
         return $this;
     }
 
     /**
      * Get heureDepart
      *
-     * @return string 
+     * @return \DateTime 
      */
     public function getHeureDepart()
     {
         return $this->heureDepart;
     }
 
-        /**
+    /**
      * Set duree
      *
-     * @param time $heureDepart
-     * @return Match2
+     * @param integer $duree
+     * @return Matchs
      */
     public function setDuree($duree)
     {
         $this->duree = $duree;
-
+    
         return $this;
     }
 
     /**
      * Get duree
      *
-     * @return string 
+     * @return integer 
      */
     public function getDuree()
     {
         return $this->duree;
     }
 
-        /**
+    /**
      * Set etat
      *
      * @param boolean $etat
-     * @return etat
+     * @return Matchs
      */
     public function setEtat($etat)
     {
         $this->etat = $etat;
-
+    
         return $this;
     }
 
@@ -220,6 +193,7 @@ class Matchs
         return $this->etat;
     }
 
+<<<<<<< HEAD
     public function getTimeLeft()
     {
         if ($this->getEtat()==1)
@@ -251,5 +225,26 @@ class Matchs
             'etat' => $this->getEtat(),
             'timeLeft' => $this->getTimeLeft()
         );
+=======
+    /**
+     * Get teamA_id
+     *
+     * @return integer 
+     */
+    public function getTeamA()
+    {
+        return $this->teamA;
     }
+
+    /**
+     * Get teamB_id
+     *
+     * @return integer 
+     */
+    public function getTeamB()
+    {
+        return $this->teamB;
+>>>>>>> 1bb3bdf405ce338465a77572458e3e5911a7fdb9
+    }
+
 }

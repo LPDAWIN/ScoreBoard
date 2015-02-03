@@ -15,8 +15,8 @@ var match_id ="{{ match.id }}";
 		<h1 class="contact">Page match</h1>
 		<div class="Board">
 			<div class="team1">
-				<h2>{{ match.team1}}</h2>
-				<img width="50px" height="50px" src="http://upload.wikimedia.org/wikipedia/fr/7/76/Logo_des_Girondins_de_Bordeaux.svg"/>
+				<h2>{{ match.teamA.teamA }}</h2>
+				<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
 			</div>
 			<div class="timer">
 				<form id="timerform">
@@ -29,8 +29,8 @@ var match_id ="{{ match.id }}";
 				</form>
 			</div>
 			<div class="team2">
-				<h2>{{ match.team2}}</h2>
-				<img width="50px" height="50px" src="http://www.les-transferts.com/wp-content/uploads/2013/01/benfica.png" />
+				<h2>{{ match.teamB.teamB }}</h2>
+				<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
 			</div>
 
 		</div>
@@ -53,6 +53,11 @@ var match_id ="{{ match.id }}";
 					</div>
 			</div>
 		</div>
+			<h2 id="timeline">Timeline</h2>
+			<div class="scrollbar">
+				<ul>
+				</ul>
+			</div>
 	</div>
 </div>
 {% endblock %}	

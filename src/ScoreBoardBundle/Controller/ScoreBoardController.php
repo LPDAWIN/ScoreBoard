@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
+use ScoreBoardBundle\Entity\Team;
 use ScoreBoardBundle\Form\MatchsType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -23,7 +24,7 @@ class ScoreBoardController extends Controller
 		$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findAll();
 
 		return $this->render('ScoreBoardBundle:Default:home.html.twig', array(
-			'matchs' => $matchs));
+			'matchs'  => $matchs));
 	}
 
 	public function matchAction(Matchs $match)

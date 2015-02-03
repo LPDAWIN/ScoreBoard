@@ -24,16 +24,9 @@ class Team
     /**
      * @var string
      *
-     * @ORM\Column(name="teamA", type="string", length=255)
+     * @ORM\Column(name="team", type="string", length=255)
      */
-    private $teamA;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="teamB", type="string", length=255)
-     */
-    private $teamB;
+    private $team;
 
     /**
      * @var string
@@ -54,49 +47,26 @@ class Team
     }
 
     /**
-     * Set teamA
+     * Set team
      *
-     * @param string $teamA
+     * @param string $team
      * @return Team
      */
-    public function setTeamA($teamA)
+    public function setTeam($team)
     {
-        $this->teamA = $teamA;
+        $this->team = $team;
     
         return $this;
     }
 
     /**
-     * Get teamA
+     * Get team
      *
      * @return string 
      */
-    public function getTeamA()
+    public function getTeam()
     {
-        return $this->teamA;
-    }
-
-    /**
-     * Set teamB
-     *
-     * @param string $teamB
-     * @return Team
-     */
-    public function setTeamB($teamB)
-    {
-        $this->teamB = $teamB;
-    
-        return $this;
-    }
-
-    /**
-     * Get teamB
-     *
-     * @return string 
-     */
-    public function getTeamB()
-    {
-        return $this->teamB;
+        return $this->team;
     }
 
     /**

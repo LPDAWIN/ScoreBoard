@@ -216,8 +216,8 @@ class Matchs
     {
         
         return array(
-            'team1' => $this->getTeam1(),
-            'team2' => $this->getTeam2(),
+            'team1' => $this->getTeamA(),
+            'team2' => $this->getTeamB(),
             'score1' => $this->getScore1(),
             'score2' => $this->getScore2(),
             'heureDepart' => $this->getHeureDepart(),

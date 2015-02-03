@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class MatchsRepository extends EntityRepository
 {
+
+	public function matchsTableau(){
+        $qb = $this
+        ->createQueryBuilder('m')
+        ->where('Matchs.id = Matchs_Team.Matchs_id')
+        ->andWhere('Team.id = Matchs_Team.Team_id');
+
+        return $qb
+        ->getQuery()
+        ->getResult();
+    }
 }

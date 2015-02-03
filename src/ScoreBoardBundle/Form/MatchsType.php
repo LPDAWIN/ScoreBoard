@@ -15,8 +15,8 @@ class MatchsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('team1')
-            ->add('team2')
+            ->add('teamA', 'entity', array('class'=>'ScoreBoardBundle\Entity\Team', 'property'=>'team'))
+            ->add('teamB', 'entity', array('class'=>'ScoreBoardBundle\Entity\Team', 'property'=>'team'))
         ;
     }
     

@@ -1,7 +1,7 @@
 var game_state = {
     time_left: 0
 };
-
+var txte ;
 function pad(number, length) {
     var str = '' + number;
     while (str.length < length) {str = '0' + str;}
@@ -26,22 +26,41 @@ $(function(){
             game_state = data;
             score1.html(data.score1);
             score2.html(data.score2);
-            game_state.time_left = data.timeLeft;
+
+            if(data.timeLeft >0){
+
+                game_state.time_left = data.timeLeft;
+            }
+            else{
+                console.log("data.timeleft<0")
+                game_state.time_left = 0 ;
+                var btn = "temps";
+                 $.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn}, function(data, textStatus) {
+                    alert(btn);
+                }, "json");
+    
+            }
+           
     });
          
   }
-    setInterval(maFuction, 5000);
+    setInterval(maFuction, 3000);
     maFuction();
 
     function decrement()
     {
-        if (game_state.etat == 1) 
+        if (game_state.etat == 1 && game_state.time_left >0) 
         {
             game_state.time_left -= 1;
         }
 
-        countdown.text(formatDuree(game_state.time_left*60));
+    var txt = formatDuree(game_state.time_left); 
+   
+    countdown.text(txt);
     }
+ 
+
     setInterval(decrement, 1000);
+    
 
 });

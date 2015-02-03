@@ -200,7 +200,7 @@ class Matchs
         {
             $now = new \DateTime;
             $elapsed = $now->getTimestamp()-$this->getHeureDepart()->getTimestamp();
-            $duree = $this->getDuree()*60 - $elapsed ;
+            $duree = $this->getDuree() - $elapsed ;
 
             return $duree;
         }

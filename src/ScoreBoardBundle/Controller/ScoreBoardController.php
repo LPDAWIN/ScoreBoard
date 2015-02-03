@@ -81,8 +81,8 @@ class ScoreBoardController extends Controller
 				{				
 					$newMatch->setEtat(false);
 					$duree = $newMatch->getDuree();
-					$dureeEcoule =$newMatch->getTimeLeft();
-					$newMatch->setDuree($duree-$dureeEcoule);
+					$dureeEcoule = $request->get('timeLeft');
+					$newMatch->setDuree($dureeEcoule);
 					$em->flush();	
 				}
 
@@ -91,9 +91,16 @@ class ScoreBoardController extends Controller
 			if($request->get('btn')=='btnInit'){
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				$newMatch->setDuree($request->get('duree'));
+				$newMatch->setDuree($request->get('duree')*60);
 				$em->flush();
 			}
+			if($request->get('btn')=='temps'){
+				$id = $request->get('id');
+				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				$newMatch->setEtat(false);
+				$em->flush();
+			}
+
 
 		}
 

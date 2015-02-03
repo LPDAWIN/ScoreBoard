@@ -26,8 +26,8 @@ jQuery(function(){
 	$("input[type=button]").click(function(){
 		var btn = $(this).attr('id');
 		var duree = $form.find('input[type=text]').val();
-			$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn, 'duree':duree,'timeLeft':timeLeft}, function(data, textStatus) {
-				alert(btn);
+		$.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn, 'duree':duree,'timeLeft':game_state.time_left}, function(data, textStatus) {
+				
 		}, "json");
 	});
 

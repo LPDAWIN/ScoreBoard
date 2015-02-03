@@ -68,3 +68,17 @@
 	height: 194%;
 	margin-top: -8px;
 }
+
+#timeline {
+	margin-left: 45%;
+}
+
+.scrollbar {
+	overflow:scroll;
+	margin-left: 40%;
+	height: 100px;
+	width: 20%;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 4px;
+}

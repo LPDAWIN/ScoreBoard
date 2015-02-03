@@ -193,7 +193,7 @@ class Matchs
         return $this->etat;
     }
 
-<<<<<<< HEAD
+
     public function getTimeLeft()
     {
         if ($this->getEtat()==1)
@@ -225,7 +225,7 @@ class Matchs
             'etat' => $this->getEtat(),
             'timeLeft' => $this->getTimeLeft()
         );
-=======
+
     /**
      * Get teamA_id
      *
@@ -244,7 +244,6 @@ class Matchs
     public function getTeamB()
     {
         return $this->teamB;
->>>>>>> 1bb3bdf405ce338465a77572458e3e5911a7fdb9
     }
 
 }

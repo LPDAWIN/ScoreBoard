@@ -35,6 +35,7 @@
 </head>
 <body>
 	 <!-- Fixed navbar -->
+   {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -50,6 +51,30 @@
           <ul class="nav navbar-nav">
             <li class="{% if activePage is defined and activePage == 'home' %}active{% endif %}"><a href="{{ path('home_ScoreBoard') }}">Home</a></li>
             <li class="{% if activePage is defined and activePage == 'match' %}active{% endif %}"><a href="{{ path('creation_ScoreBoard') }}">Match</a></li>
+            <li class="{% if activePage is defined and activePage == 'team' %}active{% endif %}"><a href="{{ path('team_ScoreBoard') }}">Team</a></li>
+            <li class="{% if activePage is defined and activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact_ScoreBoard') }}">Contact</a></li>
+            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <a class="navbar-brand" href="{{ path('home_ScoreBoard') }}"><img class="logo" src="{{ asset ('bundles/ScoreBoard/img/Sportv3.png') }}"></a>
+          <ul class="nav navbar-nav">
+            <li class="{% if activePage is defined and activePage == 'home' %}active{% endif %}"><a href="{{ path('home_ScoreBoard') }}">Home</a></li>
+            <li class="{% if activePage is defined and activePage == 'match' %}active{% endif %}"><a href="{{ path('creation_ScoreBoard') }}">Match</a></li>
+            <li class="{% if activePage is defined and activePage == 'team' %}active{% endif %}"><a href="{{ path('team_ScoreBoard') }}">Team</a></li>
             <li class="{% if activePage is defined and activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact_ScoreBoard') }}">Contact</a></li>
             <li class="{% if activePage is defined and activePage == 'login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
             <li class="{% if activePage is defined and activePage == 'register' %}active{% endif %}"><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
@@ -57,6 +82,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    {% endif %}
 
      <div class="contents">
             {% block content %}{% endblock %}

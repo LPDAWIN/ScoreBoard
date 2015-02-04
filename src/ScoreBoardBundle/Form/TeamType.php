@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MatchsType extends AbstractType
+class TeamType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,8 @@ class MatchsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('teamA', 'entity', array('class'=>'ScoreBoardBundle\Entity\Team', 'property'=>'team'))
-            ->add('teamB', 'entity', array('class'=>'ScoreBoardBundle\Entity\Team', 'property'=>'team'))
+            ->add('team')
+            ->add('logo')
         ;
     }
     
@@ -26,7 +26,7 @@ class MatchsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ScoreBoardBundle\Entity\Matchs'
+            'data_class' => 'ScoreBoardBundle\Entity\Team'
         ));
     }
 
@@ -35,6 +35,6 @@ class MatchsType extends AbstractType
      */
     public function getName()
     {
-        return 'scoreboardbundle_matchs';
+        return 'scoreboardbundle_team';
     }
 }

@@ -236,6 +236,19 @@ class Matchs
         return $this->teamA;
     }
 
+       /**
+     * Set teamA
+     *
+     * @param boolean $teamA
+     * @return Matchs
+     */
+    public function setTeamA($teamA)
+    {
+        $this->teamA = $teamA;
+    
+        return $this;
+    }
+
     /**
      * Get teamB_id
      *
@@ -244,6 +257,19 @@ class Matchs
     public function getTeamB()
     {
         return $this->teamB;
+    }
+
+           /**
+     * Set teamB
+     *
+     * @param boolean $teamV
+     * @return Matchs
+     */
+    public function setTeamB($teamB)
+    {
+        $this->teamB = $teamB;
+    
+        return $this;
     }
 
 }

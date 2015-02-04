@@ -43,13 +43,6 @@ class Timeline
     private $match;
 
 
-    public function __construct($event,$time,$match)
-    {
-        $this->event = $event;
-        $this->time = $time;
-        $this->match = $match;
-    }
-
     /**
      * Get id
      *
@@ -59,6 +52,7 @@ class Timeline
     {
         return $this->id;
     }
+
 
 
 

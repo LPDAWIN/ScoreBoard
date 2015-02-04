@@ -6,9 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use ScoreBoardBundle\Entity\Matchs;
 use ScoreBoardBundle\Entity\Timeline;
+use ScoreBoardBundle\Entity\Matchs;
 use ScoreBoardBundle\Form\MatchsType;
+use ScoreBoardBundle\Form\TeamType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -37,77 +38,66 @@ class ScoreBoardController extends Controller
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
-			
 
-			if($request->get('btn')=='more1'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+			$timeline = new Timeline();
 
-				$score = $update->getScore1();
-				$score += 1;
-				$update->setScore1($score);
-				$em->flush();
-			}
-			if($request->get('btn')=='more2'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
-				$score2 = $update->getScore2();
-				$score2 += 1;
-				$update->setScore2($score2);
-				$em->flush();
+			if($update->getDuree()!=0){
+				if($request->get('btn')=='more1'){
+					$score = $update->getScore1();
+					$score += 1;
+					$update->setScore1($score);	
+				}
+				if($request->get('btn')=='more2'){
+					$score2 = $update->getScore2();
+					$score2 += 1;
+					$update->setScore2($score2);	
+				}
+
+				if($request->get('btn')=='less1'){
+					$score3 = $update->getScore1();
+					$score3 -= 1;
+					$update->setScore1($score3);	
+				}
+				if($request->get('btn')=='less2'){
+					$score4 = $update->getScore2();
+					$score4 -= 1;
+					$update->setScore2($score4);	
+				}
+
 			}
 
-			if($request->get('btn')=='less1'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
-				$score3 = $update->getScore1();
-				$score3 -= 1;
-				$update->setScore1($score3);
-				$em->flush();
-			}
-			if($request->get('btn')=='less2'){
-				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
-				$score4 = $update->getScore2();
-				$score4 -= 1;
-				$update->setScore2($score4);
-				$em->flush();
-			}
 			if($request->get('btn')=='btnPlay'){
-				$id = $request->get('id');
-				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				if(!($newMatch->getEtat()))
+				if(!($update->getEtat()))
 				{
-					$newMatch->setHeureDepart($now);
-					$newMatch->setEtat(true);
-					$em->flush();
+					$update->setHeureDepart($now);
+					$update->setEtat(true);
 				}
 				else
 				{				
-					$newMatch->setEtat(false);
-					$duree = $newMatch->getDuree();
+					$update->setEtat(false);
+					$duree = $update->getDuree();
 					$dureeEcoule = $request->get('timeLeft');
-					$newMatch->setDuree($dureeEcoule);
-					$em->flush();	
-				}
-
-
+					$update->setDuree($dureeEcoule);	
+				}	
 			}
+
 			if($request->get('btn')=='btnInit'){
+
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				
-				$event="0";
-				$time="0";
-				$timeLine= new timeLine($event,$time,$newMatch);
-				$newMatch->setDuree($request->get('duree')*60);
-				$em->persist($timeLine);
-				$em->flush();
+				$update->setDuree($request->get('duree')*60);
+				$timeline->setEvent("0 Début du match");
+				$timeline->setTime("0");
+				$timeline->setMatch($match);
+				$em->persist($timeline);
 
 			}
 			if($request->get('btn')=='temps'){
-				$id = $request->get('id');
-				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
-				$newMatch->setEtat(false);
-				$em->flush();
+				$update->setEtat(false);
 			}
-
+		
+			$em->flush();
 
 		}
 
@@ -160,6 +150,25 @@ class ScoreBoardController extends Controller
 		return $this->redirect("match/".$m->getID());
 	}
 		return $this->render('ScoreBoardBundle:Default:create.html.twig', array(
+			'form' => $form->createView()));
+	}
+
+	public function teamAction()
+	{
+	$em = $this->getDoctrine()->getEntityManager();
+	$t = new Team();
+	$form = $this->createForm(new TeamType);
+
+	$request = $this->getRequest();
+	if ($request->isMethod('POST')){
+		$form->handleRequest($request);
+		$t = $form->getData();
+		$em->persist($t);
+		$em->flush();
+
+		return $this->redirect("team");
+	}
+		return $this->render('ScoreBoardBundle:Default:team.html.twig', array(
 			'form' => $form->createView()));
 	}
 }

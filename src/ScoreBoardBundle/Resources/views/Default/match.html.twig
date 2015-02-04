@@ -18,21 +18,20 @@ var match_id ="{{ match.id }}";
 				<h2>{{ match.teamA.team }}</h2>
 				<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
 			</div>
-			<div class="timer">
-				<form id="timerform">
-					<span id ="countdown">Waiting initialisation</span>
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-					<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
-					<input class="btn btn-sm btn-primary"type="button" value="Initialisation" id="btnInit">
-					<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
-					{% endif %}
-				</form>
-			</div>
 			<div class="team2">
 				<h2>{{ match.teamB.team }}</h2>
 				<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
 			</div>
-
+		</div>
+		<div class="timer">
+			<form id="timerform">
+				<span id ="countdown">Waiting initialisation</span>
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
+				<input class="btn btn-sm btn-primary"type="button" value="Initialisation" id="btnInit">
+				<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
+				{% endif %}
+			</form>
 		</div>
 		<div class ="ajax">
 			<div class="Score">

@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
-use ScoreBoardBundle\Entity\Team;
+use ScoreBoardBundle\Entity\Timeline;
 use ScoreBoardBundle\Form\MatchsType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -32,15 +32,16 @@ class ScoreBoardController extends Controller
 
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-
 		
-		$now = new \DateTime;
 
+		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
+			
 
 			if($request->get('btn')=='more1'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+
 				$score = $update->getScore1();
 				$score += 1;
 				$update->setScore1($score);
@@ -91,8 +92,14 @@ class ScoreBoardController extends Controller
 			if($request->get('btn')=='btnInit'){
 				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
+				
+				$event="0";
+				$time="0";
+				$timeLine= new timeLine($event,$time,$newMatch);
 				$newMatch->setDuree($request->get('duree')*60);
+				$em->persist($timeLine);
 				$em->flush();
+
 			}
 			if($request->get('btn')=='temps'){
 				$id = $request->get('id');

@@ -37,6 +37,20 @@ class Timeline
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Matchs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $match;
+
+
+    public function __construct($event,$time,$match)
+    {
+        $this->event = $event;
+        $this->time = $time;
+        $this->match = $match;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -45,11 +59,8 @@ class Timeline
     {
         return $this->id;
     }
-    /**
-   * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Matchs")
-   * @ORM\JoinColumn(nullable=false)
-   */
-    private $match;
+
+
 
     /**
      * Set event
@@ -72,6 +83,30 @@ class Timeline
     public function getEvent()
     {
         return $this->event;
+    }
+
+
+    /**
+     * Set match
+     *
+     * @param integer $match
+     * @return Timeline
+     */
+    public function setMatch($match)
+    {
+        $this->match = $match;
+    
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return integer 
+     */
+    public function getMatch()
+    {
+        return $this->match;
     }
 
     /**

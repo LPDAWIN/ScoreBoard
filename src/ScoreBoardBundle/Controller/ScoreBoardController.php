@@ -98,13 +98,10 @@ class ScoreBoardController extends Controller
 
 		}
 
-	
-
-		//$match = $em->getRepository("ScoreBoardBundle:Matchs")->createQueryBuilder('match')->getQuery()->getSingleResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
 		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 
 		
-		//var_dump($now->getTimestamp()-$match->getHeureDepart()->getTimestamp()); exit(0);
+	
 
 		if ($request->isXmlHttpRequest()) {
 			// JSON Response ;

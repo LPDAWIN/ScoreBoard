@@ -36,7 +36,7 @@ $(function(){
                 game_state.time_left = 0 ;
                 var btn = "temps";
                  $.post(Routing.generate('match_ScoreBoard',{id:match_id}), {'btn':btn}, function(data, textStatus) {
-                    alert(btn);
+                  
                 }, "json");
     
             }

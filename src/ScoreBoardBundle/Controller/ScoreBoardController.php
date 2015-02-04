@@ -43,64 +43,53 @@ class ScoreBoardController extends Controller
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score = $update->getScore1();
 				$score += 1;
-				$update->setScore1($score);
-				$em->flush();
+				$update->setScore1($score);	
 			}
 			if($request->get('btn')=='more2'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score2 = $update->getScore2();
 				$score2 += 1;
-				$update->setScore2($score2);
-				$em->flush();
+				$update->setScore2($score2);	
 			}
 
 			if($request->get('btn')=='less1'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score3 = $update->getScore1();
 				$score3 -= 1;
-				$update->setScore1($score3);
-				$em->flush();
+				$update->setScore1($score3);	
 			}
 			if($request->get('btn')=='less2'){
 				$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 				$score4 = $update->getScore2();
 				$score4 -= 1;
-				$update->setScore2($score4);
-				$em->flush();
+				$update->setScore2($score4);	
 			}
+			
 			if($request->get('btn')=='btnPlay'){
-				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				if(!($newMatch->getEtat()))
 				{
 					$newMatch->setHeureDepart($now);
 					$newMatch->setEtat(true);
-					$em->flush();
 				}
 				else
 				{				
 					$newMatch->setEtat(false);
 					$duree = $newMatch->getDuree();
 					$dureeEcoule = $request->get('timeLeft');
-					$newMatch->setDuree($dureeEcoule);
-					$em->flush();	
-				}
-
-
+					$newMatch->setDuree($dureeEcoule);	
+				}	
 			}
 			if($request->get('btn')=='btnInit'){
-				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				$newMatch->setDuree($request->get('duree')*60);
-				$em->flush();
 			}
 			if($request->get('btn')=='temps'){
-				$id = $request->get('id');
 				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				$newMatch->setEtat(false);
-				$em->flush();
 			}
 
+			$em->flush();
 
 		}
 

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Matchs;
 use ScoreBoardBundle\Entity\Team;
 use ScoreBoardBundle\Form\MatchsType;
+use ScoreBoardBundle\Form\TeamType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -153,6 +154,25 @@ class ScoreBoardController extends Controller
 		return $this->redirect("match/".$m->getID());
 	}
 		return $this->render('ScoreBoardBundle:Default:create.html.twig', array(
+			'form' => $form->createView()));
+	}
+
+	public function teamAction()
+	{
+	$em = $this->getDoctrine()->getEntityManager();
+	$t = new Team();
+	$form = $this->createForm(new TeamType);
+
+	$request = $this->getRequest();
+	if ($request->isMethod('POST')){
+		$form->handleRequest($request);
+		$t = $form->getData();
+		$em->persist($t);
+		$em->flush();
+
+		return $this->redirect("team");
+	}
+		return $this->render('ScoreBoardBundle:Default:team.html.twig', array(
 			'form' => $form->createView()));
 	}
 }

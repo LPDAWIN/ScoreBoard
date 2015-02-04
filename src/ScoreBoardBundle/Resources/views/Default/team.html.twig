@@ -1,0 +1,28 @@
+{% extends "ScoreBoardBundle::layout.html.twig" %}
+
+{% set activePage = 'team' %}
+
+{% block content %}
+<div class="container theme-showcase" role="main">
+	<div class="jumbotron">
+		<div class="well">
+			<h1>Création de Team</h1>
+			<p>Ici vous pouvez créer des équipes pour qu'elles participent à un match.</p>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Formulaire de création d'équipe</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ path("team_ScoreBoard") }}" method="post">
+
+		      	{{ form_widget(form) }}
+		      
+		      	<input type="submit" name="Envoie" value="Créer" />
+		    	</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

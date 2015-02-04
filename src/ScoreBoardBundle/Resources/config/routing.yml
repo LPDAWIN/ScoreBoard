@@ -13,3 +13,7 @@ contact_ScoreBoard:
 creation_ScoreBoard:
     path:     /match
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:create }
+
+team_ScoreBoard:
+    path:     /team
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:team }

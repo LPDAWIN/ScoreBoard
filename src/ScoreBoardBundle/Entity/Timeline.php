@@ -51,6 +51,31 @@ class Timeline
    */
     private $match;
 
+   
+    /**
+     * Get match
+     *
+     * @return integer 
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
+
+     /**
+     * Set match
+     *
+     * @param integer $match
+     * @return Timeline
+     */
+    public function setMatch($match)
+    {
+        $this->match = $match;
+    
+        return $this;
+    }
+
+
     /**
      * Set event
      *

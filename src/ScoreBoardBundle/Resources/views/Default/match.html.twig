@@ -56,7 +56,7 @@ var match_id ="{{ match.id }}";
 			<div class="scrollbar">
 				<ul>
 					{% for timeline in timelines %}
-						{{ timeline.event  }} 
+						<li id="timelineli">{{ timeline.event  }} </li>
 					{% endfor %}
 				</ul>
 			</div>

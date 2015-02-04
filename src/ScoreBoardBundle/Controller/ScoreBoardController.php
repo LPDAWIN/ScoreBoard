@@ -33,14 +33,18 @@ class ScoreBoardController extends Controller
 
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
+		//$time =  $this->getDoctrine()->getManager()->getRepository("ScoreBoardBundle:Timeline")->timeLineTableau($match->getID());
+		$time = $em->getRepository("ScoreBoardBundle:Timeline")->findBy(array('match' => $match->getID()));
 		
-
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
 
+			
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+			
 			$timeline = new Timeline();
+			
 
 			if($update->getDuree()!=0){
 				if($request->get('btn')=='more1'){
@@ -111,7 +115,7 @@ class ScoreBoardController extends Controller
 			return new JsonResponse($match->toArray());
 		} else {
 			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
-			'match' => $match));
+			'match' => $match,'timelines' => $time));
 		}
 	
 }

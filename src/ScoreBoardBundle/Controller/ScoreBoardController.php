@@ -32,10 +32,16 @@ class ScoreBoardController extends Controller
 	public function matchAction(Matchs $match)
 	{
 
+
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-		//$time =  $this->getDoctrine()->getManager()->getRepository("ScoreBoardBundle:Timeline")->timeLineTableau($match->getID());
+		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 		$time = $em->getRepository("ScoreBoardBundle:Timeline")->findBy(array('match' => $match->getID()));
+		$teamA= $em->getRepository("ScoreBoardBundle:Team")->find($match->getTeamA());
+		$teamB= $em->getRepository("ScoreBoardBundle:Team")->find($match->getTeamB());
+		
+
+
 
 		foreach ($time as $timeline) {
 			
@@ -44,24 +50,22 @@ class ScoreBoardController extends Controller
 				
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
-			$id = $request->get('id');
-
-			
+			$id = $request->get('id');	
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 			
 
-			$dureeDuMatch = $update->getDuree() - $update->getTimeLeft();
-
+			$dureeDuMatch = (int)(($update->getDuree() - $update->getTimeLeft())/60);
+			//
+			//var_dump($nom);
 			$timeline = new Timeline();
 			
-
 			if($update->getDuree()!=0){
 				if($request->get('btn')=='more1'){
 					$score = $update->getScore1();
 					$score += 1;
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent("0 Début du match");
+					$timeline->setEvent($dureeDuMatch."'  But pour ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -116,10 +120,10 @@ class ScoreBoardController extends Controller
 
 		}
 
-		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
+		
 
 		
-	
+		
 
 		if ($request->isXmlHttpRequest()) {
 			// JSON Response ;

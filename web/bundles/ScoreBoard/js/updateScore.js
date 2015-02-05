@@ -29,7 +29,7 @@ $(function(){
             score2.html(data.score2);
 
             Events = data.event
-            console.log(Events);
+          
             $(".scrollbar > ul").empty();
             Events.forEach(function(entry) {
               $("#timelineUl") .append("<li>" + entry + "</li>")

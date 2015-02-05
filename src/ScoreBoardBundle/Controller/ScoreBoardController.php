@@ -11,7 +11,6 @@ use ScoreBoardBundle\Entity\Team;
 use ScoreBoardBundle\Entity\Matchs;
 use ScoreBoardBundle\Form\MatchsType;
 use ScoreBoardBundle\Form\TeamType;
-use ScoreBoardBundle\Entity\Team;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;

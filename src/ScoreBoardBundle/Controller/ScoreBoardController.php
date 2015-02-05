@@ -36,7 +36,12 @@ class ScoreBoardController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		//$time =  $this->getDoctrine()->getManager()->getRepository("ScoreBoardBundle:Timeline")->timeLineTableau($match->getID());
 		$time = $em->getRepository("ScoreBoardBundle:Timeline")->findBy(array('match' => $match->getID()));
-		
+
+		foreach ($time as $timeline) {
+			
+			$match->setEvents($timeline->getEvent());
+		}	
+				
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');

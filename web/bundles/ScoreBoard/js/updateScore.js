@@ -27,7 +27,8 @@ $(function(){
             game_state = data;
             score1.html(data.score1);
             score2.html(data.score2);
-           // timelineli.html(data.timeLeft);
+            console.log(data.event);
+            timelineli.html(data.event);
             if(data.timeLeft >0){
 
                 game_state.time_left = data.timeLeft;

@@ -49,6 +49,15 @@ class Matchs
      */
     private $duree;
 
+
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="dureeMatch", type="integer")
+     */
+    private $dureeMatch;
+
+
     /**
      * @var boolean
      *
@@ -161,6 +170,29 @@ class Matchs
     }
 
     /**
+     * Get dureeMatch
+     *
+     * @return integer 
+     */
+    public function getDureeMatch()
+    {
+        return $this->dureeMatch;
+    }
+
+    /**
+     * Set dureeMatch
+     *
+     * @param integer $dureeMatch
+     * @return Matchs
+     */
+    public function setDureeMatch($dureeMatch)
+    {
+        $this->dureeMatch = $dureeMatch;
+    
+        return $this;
+    }
+
+    /**
      * Get duree
      *
      * @return integer 
@@ -169,6 +201,7 @@ class Matchs
     {
         return $this->duree;
     }
+
 
     /**
      * Set etat

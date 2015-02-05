@@ -104,6 +104,8 @@ class ScoreBoardController extends Controller
 
 			}
 
+				
+
 			if($request->get('btn')=='btnPlay'){
 				if(!($update->getEtat()))
 				{
@@ -120,7 +122,9 @@ class ScoreBoardController extends Controller
 			}
 
 			if($request->get('btn')=='btnInit'){
+				$update->setEtat(true);
 				$update->setDuree($request->get('duree')*60);
+				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
 				$timeline->setEvent("0 Début du match");
 				$timeline->setTime("0");
 				$timeline->setMatch($match);

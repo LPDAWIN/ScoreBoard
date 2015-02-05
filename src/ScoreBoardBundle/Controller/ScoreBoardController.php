@@ -49,6 +49,9 @@ class ScoreBoardController extends Controller
 			
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 			
+
+			$dureeDuMatch = $update->getDuree() - $update->getTimeLeft();
+
 			$timeline = new Timeline();
 			
 
@@ -59,7 +62,7 @@ class ScoreBoardController extends Controller
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
 					$timeline->setEvent("0 Début du match");
-					$timeline->setTime($dureeEcoule);
+					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
 				}

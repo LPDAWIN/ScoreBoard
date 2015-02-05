@@ -30,10 +30,9 @@ $(function(){
 
             Events = data.event
             console.log(Events);
-            $("li").empty();
+            $(".scrollbar > ul").empty();
             Events.forEach(function(entry) {
-               // alert(entry);
-                timelineli.append("<li>" + entry + "</li>")
+              $("#timelineUl") .append("<li>" + entry + "</li>")
             }); 
            
             if(data.timeLeft >0){

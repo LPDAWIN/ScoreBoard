@@ -27,8 +27,15 @@ $(function(){
             game_state = data;
             score1.html(data.score1);
             score2.html(data.score2);
-            console.log(data.event);
-            timelineli.html(data.event);
+
+            Events = data.event
+            console.log(Events);
+            $("li").empty();
+            Events.forEach(function(entry) {
+               // alert(entry);
+                timelineli.append("<li>" + entry + "</li>")
+            }); 
+           
             if(data.timeLeft >0){
 
                 game_state.time_left = data.timeLeft;
@@ -41,7 +48,7 @@ $(function(){
                 }, "json");
     
             }
-           
+        
     });
          
   }

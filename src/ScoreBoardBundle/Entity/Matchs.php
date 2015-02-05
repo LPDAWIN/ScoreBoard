@@ -210,6 +210,21 @@ class Matchs
         }
     }
 
+    private $tbEvents = array();
+   
+    public function getEvents()
+    {   
+
+        return $this->tbEvents;
+    }
+
+    public function setEvents($event)
+    {
+      
+        $this->tbEvents[]=$event;
+        return $this->tbEvents;
+    }
+
 
 
     public function toArray()
@@ -223,7 +238,8 @@ class Matchs
             'heureDepart' => $this->getHeureDepart(),
             'duree' => $this->getDuree(),
             'etat' => $this->getEtat(),
-            'timeLeft' => $this->getTimeLeft()
+            'timeLeft' => $this->getTimeLeft(),
+            'event' => $this->getEvents()
         );
      }
     /**

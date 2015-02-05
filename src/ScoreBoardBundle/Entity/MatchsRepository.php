@@ -13,7 +13,8 @@ use Doctrine\ORM\EntityRepository;
 class MatchsRepository extends EntityRepository
 {
 
-	public function matchsTableau(){
+	public function matchsTableau()
+	{
         $qb = $this
         ->createQueryBuilder('m')
         ->where('Matchs.id = Matchs_Team.Matchs_id')
@@ -23,4 +24,12 @@ class MatchsRepository extends EntityRepository
         ->getQuery()
         ->getResult();
     }
+
+    public function timeLineTableau($id)
+
+    {
+    	$qb = $this->createQueryBuilder('t')->where('Timeline.match_id = '+ $id);
+    	return $qb->getQuery()->getResult();
+    }
+
 }

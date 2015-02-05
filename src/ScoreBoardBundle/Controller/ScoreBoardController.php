@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Timeline;
+use ScoreBoardBundle\Entity\Team;
 use ScoreBoardBundle\Entity\Matchs;
 use ScoreBoardBundle\Form\MatchsType;
 use ScoreBoardBundle\Form\TeamType;
@@ -34,20 +35,34 @@ class ScoreBoardController extends Controller
 
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-		
+		//$time =  $this->getDoctrine()->getManager()->getRepository("ScoreBoardBundle:Timeline")->timeLineTableau($match->getID());
+		$time = $em->getRepository("ScoreBoardBundle:Timeline")->findBy(array('match' => $match->getID()));
 
+		foreach ($time as $timeline) {
+			
+			$match->setEvents($timeline->getEvent());
+		}	
+				
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
 			$id = $request->get('id');
 
+			
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+			
 			$timeline = new Timeline();
+			
 
 			if($update->getDuree()!=0){
 				if($request->get('btn')=='more1'){
 					$score = $update->getScore1();
 					$score += 1;
 					$update->setScore1($score);	
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent("0 Début du match");
+					$timeline->setTime($dureeEcoule);
+					$timeline->setMatch($match);
+					$em->persist($timeline);
 				}
 				if($request->get('btn')=='more2'){
 					$score2 = $update->getScore2();
@@ -84,9 +99,6 @@ class ScoreBoardController extends Controller
 			}
 
 			if($request->get('btn')=='btnInit'){
-
-				$id = $request->get('id');
-				$newMatch = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id'=>$id));
 				$update->setDuree($request->get('duree')*60);
 				$timeline->setEvent("0 Début du match");
 				$timeline->setTime("0");
@@ -112,7 +124,7 @@ class ScoreBoardController extends Controller
 			return new JsonResponse($match->toArray());
 		} else {
 			return $this->render('ScoreBoardBundle:Default:match.html.twig', array(		
-			'match' => $match));
+			'match' => $match,'timelines' => $time));
 		}
 	
 }

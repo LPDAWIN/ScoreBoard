@@ -20,13 +20,15 @@ $(function(){
     var score1 = $("#score1");
     var score2 = $("#score2");
     var countdown = $("#countdown"); 
+    var timelineli = $("#timelineli");
     // var startTime = $("#startTime") ;
     function maFuction(){
         $.getJSON(match_id).success(function(data){
             game_state = data;
             score1.html(data.score1);
             score2.html(data.score2);
-
+            console.log(data.event);
+            timelineli.html(data.event);
             if(data.timeLeft >0){
 
                 game_state.time_left = data.timeLeft;

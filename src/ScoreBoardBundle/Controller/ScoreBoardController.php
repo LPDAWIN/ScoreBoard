@@ -55,8 +55,7 @@ class ScoreBoardController extends Controller
 			
 
 			$dureeDuMatch = (int)(($update->getDuree() - $update->getTimeLeft())/60);
-			//
-			//var_dump($nom);
+			
 			$timeline = new Timeline();
 			
 			if($update->getDuree()!=0){
@@ -65,7 +64,7 @@ class ScoreBoardController extends Controller
 					$score += 1;
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."'  But pour ".$teamA->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -73,18 +72,34 @@ class ScoreBoardController extends Controller
 				if($request->get('btn')=='more2'){
 					$score2 = $update->getScore2();
 					$score2 += 1;
-					$update->setScore2($score2);	
+					$update->setScore2($score2);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamB->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);
+
 				}
 
 				if($request->get('btn')=='less1'){
 					$score3 = $update->getScore1();
 					$score3 -= 1;
-					$update->setScore1($score3);	
+					$update->setScore1($score3);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamA->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);	
 				}
 				if($request->get('btn')=='less2'){
 					$score4 = $update->getScore2();
 					$score4 -= 1;
-					$update->setScore2($score4);	
+					$update->setScore2($score4);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamB->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);	
 				}
 
 			}

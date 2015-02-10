@@ -42,10 +42,16 @@ class ScoreBoardController extends Controller
 	public function matchAction(Matchs $match)
 	{
 
+
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getEntityManager();
-		//$time =  $this->getDoctrine()->getManager()->getRepository("ScoreBoardBundle:Timeline")->timeLineTableau($match->getID());
+		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
 		$time = $em->getRepository("ScoreBoardBundle:Timeline")->findBy(array('match' => $match->getID()));
+		$teamA= $em->getRepository("ScoreBoardBundle:Team")->find($match->getTeamA());
+		$teamB= $em->getRepository("ScoreBoardBundle:Team")->find($match->getTeamB());
+		
+
+
 
 		foreach ($time as $timeline) {
 			
@@ -54,43 +60,61 @@ class ScoreBoardController extends Controller
 				
 		$now = new \DateTime;
 		if($request->getMethod()=='POST'){
-			$id = $request->get('id');
-
-			
+			$id = $request->get('id');	
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
+			
+
+			$dureeDuMatch = (int)(($update->getDuree() - $update->getTimeLeft())/60);
 			
 			$timeline = new Timeline();
 			
-
 			if($update->getDuree()!=0){
 				if($request->get('btn')=='more1'){
 					$score = $update->getScore1();
 					$score += 1;
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent("0 Début du match");
-					$timeline->setTime($dureeEcoule);
+					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamA->getTeam());
+					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
 				}
 				if($request->get('btn')=='more2'){
 					$score2 = $update->getScore2();
 					$score2 += 1;
-					$update->setScore2($score2);	
+					$update->setScore2($score2);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamB->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);
+
 				}
 
 				if($request->get('btn')=='less1'){
 					$score3 = $update->getScore1();
 					$score3 -= 1;
-					$update->setScore1($score3);	
+					$update->setScore1($score3);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamA->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);	
 				}
 				if($request->get('btn')=='less2'){
 					$score4 = $update->getScore2();
 					$score4 -= 1;
-					$update->setScore2($score4);	
+					$update->setScore2($score4);
+					$dureeEcoule = $request->get('timeLeft');
+					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamB->getTeam());
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);	
 				}
 
 			}
+
+				
 
 			if($request->get('btn')=='btnPlay'){
 				if(!($update->getEtat()))
@@ -108,7 +132,9 @@ class ScoreBoardController extends Controller
 			}
 
 			if($request->get('btn')=='btnInit'){
+				$update->setEtat(true);
 				$update->setDuree($request->get('duree')*60);
+				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
 				$timeline->setEvent("0 Début du match");
 				$timeline->setTime("0");
 				$timeline->setMatch($match);
@@ -123,10 +149,10 @@ class ScoreBoardController extends Controller
 
 		}
 
-		$match= $em->getRepository("ScoreBoardBundle:Matchs")->find($match->getID());
+		
 
 		
-	
+		
 
 		if ($request->isXmlHttpRequest()) {
 			// JSON Response ;

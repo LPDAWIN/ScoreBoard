@@ -14,6 +14,7 @@ jQuery(function(){
 	var $form = $('#timerform');
 	var less2 = $("#less2");
 	var countdown = $("#countdown"); 
+	var teamNumber = $("#teamNumber");
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
@@ -64,6 +65,8 @@ jQuery(function(){
 
 
 setTimeout(function() {}, 10);
+
+	
 
 
 

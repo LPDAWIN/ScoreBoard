@@ -2,7 +2,9 @@
 
 {% set activePage = 'tournament' %}
 
+
 {% block content %}
+
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
 		<div class="well">
@@ -17,7 +19,8 @@
 				<form action="{{ path("createtournament_ScoreBoard") }}" method="post">
 
 		      	{{ form_widget(form) }}
-		      
+
+		      	
 		      	<input type="submit" name="Envoie" value="Créer" />
 		    	</form>
 			</div>

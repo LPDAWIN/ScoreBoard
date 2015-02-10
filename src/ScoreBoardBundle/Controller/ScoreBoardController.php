@@ -185,6 +185,7 @@ class ScoreBoardController extends Controller
 		$m->setScore1(0);
 		$m->setScore2(0);
 		$m->setDuree(0);
+		$m->setDureeMatch(0);
 		$m->setHeureDepart($now);
 		$m->setEtat(false);
 		$em->persist($m);

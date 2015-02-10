@@ -9,8 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use ScoreBoardBundle\Entity\Timeline;
 use ScoreBoardBundle\Entity\Team;
 use ScoreBoardBundle\Entity\Matchs;
+use ScoreBoardBundle\Entity\Tournament;
 use ScoreBoardBundle\Form\MatchsType;
 use ScoreBoardBundle\Form\TeamType;
+use ScoreBoardBundle\Form\TournamentType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -23,10 +25,18 @@ class ScoreBoardController extends Controller
 	{
 
 		$em = $this->getDoctrine()->getEntityManager();
-		$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findAll();
+		/*$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findAll();*/
+
+		$matchs = $this
+	    ->getDoctrine()
+	    ->getManager()
+	    ->getRepository('ScoreBoardBundle:Matchs')
+	    ->matchsTableau();
+
+		$tournament = $em->getRepository("ScoreBoardBundle:Tournament")->findAll();
 
 		return $this->render('ScoreBoardBundle:Default:home.html.twig', array(
-			'matchs'  => $matchs));
+			'matchs'  => $matchs, 'tournament' => $tournament));
 	}
 
 	public function matchAction(Matchs $match)
@@ -104,6 +114,8 @@ class ScoreBoardController extends Controller
 
 			}
 
+				
+
 			if($request->get('btn')=='btnPlay'){
 				if(!($update->getEtat()))
 				{
@@ -120,7 +132,9 @@ class ScoreBoardController extends Controller
 			}
 
 			if($request->get('btn')=='btnInit'){
+				$update->setEtat(true);
 				$update->setDuree($request->get('duree')*60);
+				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
 				$timeline->setEvent("0 Début du match");
 				$timeline->setTime("0");
 				$timeline->setMatch($match);
@@ -156,8 +170,6 @@ class ScoreBoardController extends Controller
 		return new Response($content);
 	}
 
-
-
 	public function createAction()
 	{
 	$em = $this->getDoctrine()->getEntityManager();
@@ -173,6 +185,7 @@ class ScoreBoardController extends Controller
 		$m->setScore1(0);
 		$m->setScore2(0);
 		$m->setDuree(0);
+		$m->setDureeMatch(0);
 		$m->setHeureDepart($now);
 		$m->setEtat(false);
 		$em->persist($m);
@@ -201,6 +214,31 @@ class ScoreBoardController extends Controller
 	}
 		return $this->render('ScoreBoardBundle:Default:team.html.twig', array(
 			'form' => $form->createView()));
+	}
+
+	public function createtournamentAction()
+	{
+	$em = $this->getDoctrine()->getEntityManager();
+	$t = new Tournament();
+	$form = $this->createForm(new TournamentType);
+
+	$request = $this->getRequest();
+	if ($request->isMethod('POST')){
+		$form->handleRequest($request);
+		$t = $form->getData();
+		$em->persist($t);
+		$em->flush();
+
+		return $this->redirect("tournament/".$t->getID());
+	}
+		return $this->render('ScoreBoardBundle:Default:createtournament.html.twig', array(
+			'form' => $form->createView()));
+	}
+
+	public function tournamentAction()
+	{
+		$content = $this->get('templating')->render('ScoreBoardBundle:Default:tournament.html.twig');
+		return new Response($content);
 	}
 }
 

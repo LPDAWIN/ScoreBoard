@@ -17,3 +17,11 @@ creation_ScoreBoard:
 team_ScoreBoard:
     path:     /team
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:team }
+
+createtournament_ScoreBoard:
+    path:     /tournament
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:createtournament }
+
+tournament_ScoreBoard:
+    path:     /tournament/{id}
+    defaults: { _controller: ScoreBoardBundle:ScoreBoard:tournament }

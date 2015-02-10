@@ -34,6 +34,8 @@ $(function(){
             Events.forEach(function(entry) {
               $("#timelineUl") .append("<li>" + entry + "</li>")
             }); 
+
+
            
             if(data.timeLeft >0){
 

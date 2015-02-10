@@ -52,6 +52,7 @@
             <li class="{% if activePage is defined and activePage == 'home' %}active{% endif %}"><a href="{{ path('home_ScoreBoard') }}">Home</a></li>
             <li class="{% if activePage is defined and activePage == 'match' %}active{% endif %}"><a href="{{ path('creation_ScoreBoard') }}">Match</a></li>
             <li class="{% if activePage is defined and activePage == 'team' %}active{% endif %}"><a href="{{ path('team_ScoreBoard') }}">Team</a></li>
+            <li class="{% if activePage is defined and activePage == 'tournament' %}active{% endif %}"><a href="{{ path('createtournament_ScoreBoard') }}">Tournament</a></li>
             <li class="{% if activePage is defined and activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact_ScoreBoard') }}">Contact</a></li>
             <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
           </ul>
@@ -75,6 +76,7 @@
             <li class="{% if activePage is defined and activePage == 'home' %}active{% endif %}"><a href="{{ path('home_ScoreBoard') }}">Home</a></li>
             <li class="{% if activePage is defined and activePage == 'match' %}active{% endif %}"><a href="{{ path('creation_ScoreBoard') }}">Match</a></li>
             <li class="{% if activePage is defined and activePage == 'team' %}active{% endif %}"><a href="{{ path('team_ScoreBoard') }}">Team</a></li>
+            <li class="{% if activePage is defined and activePage == 'tournament' %}active{% endif %}"><a href="{{ path('createtournament_ScoreBoard') }}">Tournament</a></li>
             <li class="{% if activePage is defined and activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact_ScoreBoard') }}">Contact</a></li>
             <li class="{% if activePage is defined and activePage == 'login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
             <li class="{% if activePage is defined and activePage == 'register' %}active{% endif %}"><a href="{{ path('fos_user_registration_register') }}">Register</a></li>

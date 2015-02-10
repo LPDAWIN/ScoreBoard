@@ -68,6 +68,13 @@ class Matchs
    */
   private $teamB;
 
+
+    /**
+   * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Tournament")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $tournament;
+
     /**
      * Get id
      *
@@ -286,6 +293,29 @@ class Matchs
         $this->teamB = $teamB;
     
         return $this;
+    }
+
+    /**
+     * Set tournament
+     *
+     * @param string $tournament
+     * @return Team
+     */
+    public function setTournament($tournament)
+    {
+        $this->tournament = $tournament;
+    
+        return $this;
+    }
+
+    /**
+     * Get tournament
+     *
+     * @return string
+     */
+    public function getTournament()
+    {
+        return $this->tournament;
     }
 
 }

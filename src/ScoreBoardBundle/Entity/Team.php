@@ -35,7 +35,6 @@ class Team
      */
     private $logo;
 
-
     /**
      * Get id
      *
@@ -91,4 +90,6 @@ class Team
     {
         return $this->logo;
     }
+
+
 }

@@ -17,8 +17,7 @@ class MatchsRepository extends EntityRepository
 	{
         $qb = $this
         ->createQueryBuilder('m')
-        ->where('Matchs.id = Matchs_Team.Matchs_id')
-        ->andWhere('Team.id = Matchs_Team.Team_id');
+        ->where('m.tournament is null');
 
         return $qb
         ->getQuery()

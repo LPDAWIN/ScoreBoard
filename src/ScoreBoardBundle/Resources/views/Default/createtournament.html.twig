@@ -1,0 +1,28 @@
+{% extends "ScoreBoardBundle::layout.html.twig" %}
+
+{% set activePage = 'tournament' %}
+
+{% block content %}
+<div class="container theme-showcase" role="main">
+	<div class="jumbotron">
+		<div class="well">
+			<h1>Création de tournois</h1>
+			<p>Ici vous pouvez créer un tournois en insérant le nom</p>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Formulaire de création de tournois</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ path("createtournament_ScoreBoard") }}" method="post">
+
+		      	{{ form_widget(form) }}
+		      
+		      	<input type="submit" name="Envoie" value="Créer" />
+		    	</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

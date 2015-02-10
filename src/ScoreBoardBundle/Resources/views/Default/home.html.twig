@@ -23,6 +23,20 @@
 			</tr>
 		{% endfor %}
 		</table>
+		<table class="table table-bordered">
+			<tr>
+				<th>Numéro</th>
+				<th>Tournament</th>
+				<th>Voir</th>
+			</tr>
+			{% for tournaments in tournament %}
+			<tr>
+				<td>{{ loop.index }}</td>
+				<td>{{ tournaments.name }}</td>
+				<td><a href="{{ path('tournament_ScoreBoard', {id: tournaments.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Voir"/></a></td>
+			</tr>
+		{% endfor %}
+		</table>
 	</div>
 </div>
 {% endblock %}

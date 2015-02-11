@@ -30,8 +30,8 @@
 	width : 900px;
 	display: block;
 	clear: both;
-	text-align: center;
 	margin: auto;
+	text-align: center;
 }
 
 #score1, #score2 {
@@ -45,10 +45,12 @@
 }
 .scoreteam1 {
 	margin-right: 250px;
+	text-align: center;
 }
 
 .scoreteam2 {
 	margin-left: 250px;
+	text-align: center;
 }
 
 .scoreteam1, .scoreteam2 {
@@ -57,6 +59,18 @@
 
 #less1, #less2, #more1, #more2 {
 	font-size: 30px;
+}
+
+@media only screen and (max-width: 540px) {
+	.Score {
+		display: block;
+		text-align: left;
+	}
+
+	.scoreteam1, .scoreteam2 {
+		display: block;
+	}
+	
 }
 
 .btn, .btn-sm, .btn-default {

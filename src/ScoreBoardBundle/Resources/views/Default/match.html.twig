@@ -12,54 +12,53 @@ var match_id ="{{ match.id }}";
 
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-		<div class="well">
-				<div class="team1">
-					<h1 id="tName">{{ match.teamA.team }}</h1>
-					<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
-				</div>
-				<div class="timer">
-					<form id="timerform">
-						<h1><span id ="countdown">Waiting initialisation</span></h1>
-						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
-						<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
-						<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
-						<button id="end">End the game</button>
-						{% endif %}
-					</form>
-				</div>
-				<div class="team2">
-					<h1>{{ match.teamB.team }}</h1>
-					<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
-				</div>
-			
-			<div class ="ajax">
-				<div class="Score">
-					<h2>Score</h2>
-						<div class="scoreteam1">
-							<label id="score1" value="{{ match.score1 }}"></label>
-							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-							<i id="less1" data-action="plus-team1" class="fa fa-minus"></i>
-							<i id="more1" class="fa fa-plus"></i>
-							{% endif %}
-						</div>
-						<div class="scoreteam2">
-							<label id="score2" value="{{ match.score2 }}"></label>
-							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-							<i id="less2" class="fa fa-minus"></i>
-							<i id="more2" class="fa fa-plus"></i>
-							{% endif %}
-						</div>
-				</div>
+		<div class="Board">
+			<div class="team1">
+				<h2>{{ match.teamA.team }}</h2>
+				<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
 			</div>
-		
+			<div class="timer">
+				<form id="timerform">
+					<span id ="countdown">Waiting initialisation</span>
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
+					<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
+					<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
+					<input class="btn btn-sm btn-primary"type="button" value="Close the game" id="end">
+					{% endif %}
+				</form>
+			</div>
+			<div class="team2">
+				<h2>{{ match.teamB.team }}</h2>
+				<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
+			</div>
+		</div>
+		<div class ="ajax">
+			<div class="Score">
+				<h2>Score</h2>
+					<div class="scoreteam1">
+						<label id="score1" value="{{ match.score1 }}"></label>
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						<i id="less1" data-action="plus-team1" class="fa fa-minus"></i>
+						<i id="more1" class="fa fa-plus"></i>
+						{% endif %}
+					</div>
+					<div class="scoreteam2">
+						<label id="score2" value="{{ match.score2 }}"></label>
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						<i id="less2" class="fa fa-minus"></i>
+						<i id="more2" class="fa fa-plus"></i>
+						{% endif %}
+					</div>
+
+			</div>
+		</div>
 			<h2 id="timeline">Timeline</h2>
 			<div class="scrollbar">
 				<ul id = "timelineUl">
 					<li id="timelineli"></li>
 				</ul>
 			</div>
-		</div>
 	</div>
 </div>
 {% endblock %}	

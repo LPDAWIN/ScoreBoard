@@ -17,8 +17,6 @@
 				{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 				<div class="form-group">
 					{{ form_label(form.team, "Team name", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-
-<<<<<<< HEAD
 					{# Affichage des erreurs pour ce champ précis. #}
 					{{ form_errors(form.team) }}
 
@@ -43,15 +41,8 @@
 						<input class="btn btn-sm btn-primary" type="submit" name="Envoie" value="Créer" />
 					</div>
 				</div>
-		    	<li><a href="{{ path('creation_ScoreBoard') }}">Envie de créer un match ? Cliquez ici !</a></li>
 				{{ form_end(form) }}
-=======
-		      	{{ form_widget(form) }}
-		      
-		      	<input type="submit" name="Envoie" value="Create" />
-		    	</form>
 		    	<li><a href="{{ path('creation_ScoreBoard') }}">Desire to create a game? Click here!</a></li>
->>>>>>> bcf9fe78de85b9c599cf3492ed1da3d6d5244b77
 			</div>
 		</div>
 	</div>

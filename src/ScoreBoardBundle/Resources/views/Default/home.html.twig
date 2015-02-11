@@ -6,34 +6,34 @@
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
 		<div class="well">
-			<h1>Bienvenue</h1>
-			<p> Vous pouvez ici créer votre match, projeter un écran avec le score et la timélie ainsi qu'un autre écran pour l'arbitre afin de gérer le score et les différents éléments qui seront affichés. dans la timeline</p>
+			<h1>Welcome </h1>
+			<p>Here you can create your match, project a screen with the score and a timeline and another screen to the referee to manage the score and the various elements that will be displayed in the timeline.</p>
 		</div>
 		<table class="table table-bordered">
 			<tr>
-				<th>Numéro</th>
-				<th>Matchs</th>
-				<th>Voir</th>
+				<th>Number</th>
+				<th>Match</th>
+				<th>Consult</th>
 			</tr>
 			{% for match in matchs %}
 			<tr>
 				<td>{{ loop.index }}</td>
 				<td>{{ match.teamA.team }} VS {{ match.teamB.team }}</td>
-				<td><a href="{{ path('match_ScoreBoard', {id: match.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Voir"/></a></td>
+				<td><a href="{{ path('match_ScoreBoard', {id: match.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Consult"/></a></td>
 			</tr>
 		{% endfor %}
 		</table>
 		<table class="table table-bordered">
 			<tr>
-				<th>Numéro</th>
+				<th>Number</th>
 				<th>Tournament</th>
-				<th>Voir</th>
+				<th>Consult</th>
 			</tr>
 			{% for tournaments in tournament %}
 			<tr>
 				<td>{{ loop.index }}</td>
 				<td>{{ tournaments.name }}</td>
-				<td><a href="{{ path('tournament_ScoreBoard', {id: tournaments.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Voir"/></a></td>
+				<td><a href="{{ path('tournament_ScoreBoard', {id: tournaments.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Consult"/></a></td>
 			</tr>
 		{% endfor %}
 		</table>

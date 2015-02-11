@@ -226,12 +226,14 @@ class ScoreBoardController extends Controller
 
 	public function createtournamentAction()
 	{
+
 	$em = $this->getDoctrine()->getEntityManager();
 	$t = new Tournament();
 	$form = $this->createForm(new TournamentType);
 
 	$request = $this->getRequest();
 	if ($request->isMethod('POST')){
+
 		$form->handleRequest($request);
 		$t = $form->getData();
 		$em->persist($t);
@@ -240,13 +242,22 @@ class ScoreBoardController extends Controller
 		return $this->redirect("tournament/".$t->getID());
 	}
 		return $this->render('ScoreBoardBundle:Default:createtournament.html.twig', array(
-			'form' => $form->createView()));
+			'form' => $form->createView()));	
 	}
 
-	public function tournamentAction()
+	public function tournamentAction(Tournament $t)
 	{
-		$content = $this->get('templating')->render('ScoreBoardBundle:Default:tournament.html.twig');
-		return new Response($content);
+		$em = $this->getDoctrine()->getEntityManager();
+		$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findBy(array('tournament' => $t->getId()));
+		$team = $em->getRepository("ScoreBoardBundle:Team")->findAll();
+
+		$request = $this->getRequest();
+
+
+
+
+		return $this->render('ScoreBoardBundle:Default:tournament.html.twig', array(
+		'matchs' => $matchs, 'team' => $team , 'tournament' => $t));
 	}
 }
 

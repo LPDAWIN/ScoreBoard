@@ -4,7 +4,7 @@ Projet ScoreBoard
 =================
 
 
-Bienvenue à tous et à toute, ceci est un projet scolaire réalisé en licence professionnel DAWIN, ce projet est réalisé dans un cadre scolaire.
+Bienvenue à tous et à toute, ceci est un projet scolaire réalisé en licence professionnel DAWIN.
 
 Le projet 
 ---------

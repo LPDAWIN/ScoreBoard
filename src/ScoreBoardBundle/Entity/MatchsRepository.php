@@ -30,5 +30,12 @@ class MatchsRepository extends EntityRepository
     	$qb = $this->createQueryBuilder('t')->where('Timeline.match_id = '+ $id);
     	return $qb->getQuery()->getResult();
     }
+        
+    public function matchTournament($id)
+    {
+
+        $qb = $this->createQueryBuilder('ma')->where('Matchs.tournament_id = '+ $id);
+        return $qb->getQuery()->getResult();
+    }
 
 }

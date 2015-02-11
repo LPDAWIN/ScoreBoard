@@ -32,7 +32,7 @@ $(function(){
           
             $(".scrollbar > ul").empty();
             Events.forEach(function(entry) {
-              $("#timelineUl") .append("<li>" + entry + "</li>")
+              $("#timelineUl") .prepend("<li>" + entry + "</li>")
             }); 
 
 

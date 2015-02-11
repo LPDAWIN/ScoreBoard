@@ -64,7 +64,7 @@ class ScoreBoardController extends Controller
 			$update = $em->getRepository("ScoreBoardBundle:Matchs")->find(array('id' => $id));
 			
 
-			$dureeDuMatch = (int)(($update->getDuree() - $update->getTimeLeft())/60);
+			$dureeDuMatch = (int)(($update->getDureeMatch() - $update->getTimeLeft())/60);
 			
 			$timeline = new Timeline();
 			
@@ -74,7 +74,7 @@ class ScoreBoardController extends Controller
 					$score += 1;
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamA->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -84,7 +84,7 @@ class ScoreBoardController extends Controller
 					$score2 += 1;
 					$update->setScore2($score2);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamB->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamB->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -96,7 +96,7 @@ class ScoreBoardController extends Controller
 					$score3 -= 1;
 					$update->setScore1($score3);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamA->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);	
@@ -106,7 +106,7 @@ class ScoreBoardController extends Controller
 					$score4 -= 1;
 					$update->setScore2($score4);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamB->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamB->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);	
@@ -121,21 +121,28 @@ class ScoreBoardController extends Controller
 				{
 					$update->setHeureDepart($now);
 					$update->setEtat(true);
+					$timeline->setEvent($dureeDuMatch."' Game ");
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);
 				}
 				else
 				{				
 					$update->setEtat(false);
 					$duree = $update->getDuree();
 					$dureeEcoule = $request->get('timeLeft');
-					$update->setDuree($dureeEcoule);	
+					$update->setDuree($dureeEcoule);
+					$timeline->setEvent($dureeDuMatch."' Timeout ");
+					$timeline->setTime($dureeDuMatch);
+					$timeline->setMatch($match);
+					$em->persist($timeline);	
 				}	
 			}
 
 			if($request->get('btn')=='btnInit'){
-				$update->setEtat(true);
 				$update->setDuree($request->get('duree')*60);
 				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
-				$timeline->setEvent("0 Début du match");
+				$timeline->setEvent("0 Match begining");
 				$timeline->setTime("0");
 				$timeline->setMatch($match);
 				$em->persist($timeline);
@@ -218,12 +225,14 @@ class ScoreBoardController extends Controller
 
 	public function createtournamentAction()
 	{
+
 	$em = $this->getDoctrine()->getEntityManager();
 	$t = new Tournament();
 	$form = $this->createForm(new TournamentType);
 
 	$request = $this->getRequest();
 	if ($request->isMethod('POST')){
+
 		$form->handleRequest($request);
 		$t = $form->getData();
 		$em->persist($t);
@@ -232,13 +241,22 @@ class ScoreBoardController extends Controller
 		return $this->redirect("tournament/".$t->getID());
 	}
 		return $this->render('ScoreBoardBundle:Default:createtournament.html.twig', array(
-			'form' => $form->createView()));
+			'form' => $form->createView()));	
 	}
 
-	public function tournamentAction()
+	public function tournamentAction(Tournament $t)
 	{
-		$content = $this->get('templating')->render('ScoreBoardBundle:Default:tournament.html.twig');
-		return new Response($content);
+		$em = $this->getDoctrine()->getEntityManager();
+		$matchs = $em->getRepository("ScoreBoardBundle:Matchs")->findBy(array('tournament' => $t->getId()));
+		$team = $em->getRepository("ScoreBoardBundle:Team")->findAll();
+
+		$request = $this->getRequest();
+
+
+
+
+		return $this->render('ScoreBoardBundle:Default:tournament.html.twig', array(
+		'matchs' => $matchs, 'team' => $team , 'tournament' => $t));
 	}
 }
 

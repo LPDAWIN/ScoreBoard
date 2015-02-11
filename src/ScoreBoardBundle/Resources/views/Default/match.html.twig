@@ -12,7 +12,6 @@ var match_id ="{{ match.id }}";
 
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-		<h1 class="contact">Page match</h1>
 		<div class="Board">
 			<div class="team1">
 				<h2>{{ match.teamA.team }}</h2>
@@ -23,8 +22,9 @@ var match_id ="{{ match.id }}";
 					<span id ="countdown">Waiting initialisation</span>
 					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
-					<input class="btn btn-sm btn-primary"type="button" value="Initialisation" id="btnInit">
+					<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
 					<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
+					<button id="end">End the game</button>
 					{% endif %}
 				</form>
 			</div>
@@ -50,6 +50,7 @@ var match_id ="{{ match.id }}";
 						<i id="more2" class="fa fa-plus"></i>
 						{% endif %}
 					</div>
+
 			</div>
 		</div>
 			<h2 id="timeline">Timeline</h2>

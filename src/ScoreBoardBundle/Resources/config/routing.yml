@@ -6,10 +6,6 @@ match_ScoreBoard:
     path:     /match/{id}
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:match }
 
-contact_ScoreBoard:
-    path:     /contact
-    defaults: { _controller: ScoreBoardBundle:ScoreBoard:contact }
-
 creation_ScoreBoard:
     path:     /match
     defaults: { _controller: ScoreBoardBundle:ScoreBoard:create }

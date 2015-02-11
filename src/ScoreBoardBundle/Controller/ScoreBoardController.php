@@ -67,94 +67,100 @@ class ScoreBoardController extends Controller
 			$dureeDuMatch = (int)(($update->getDureeMatch() - $update->getTimeLeft())/60);
 			
 			$timeline = new Timeline();
-			
-			if($update->getDuree()!=0){
-				if($request->get('btn')=='more1'){
-					$score = $update->getScore1();
-					$score += 1;
-					$update->setScore1($score);	
-					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamA->getTeam());
-					$timeline->setTime($dureeDuMatch);
+			if(!$update->getFinDuMatch())
+			{	
+				if($update->getDuree()!=0){
+					if($request->get('btn')=='more1'){
+						$score = $update->getScore1();
+						$score += 1;
+						$update->setScore1($score);	
+						$dureeEcoule = $request->get('timeLeft');
+						$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamA->getTeam());
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);
+					}
+					if($request->get('btn')=='more2'){
+						$score2 = $update->getScore2();
+						$score2 += 1;
+						$update->setScore2($score2);
+						$dureeEcoule = $request->get('timeLeft');
+						$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamB->getTeam());
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);
+
+					}
+
+					if($request->get('btn')=='less1'){
+						$score3 = $update->getScore1();
+						$score3 -= 1;
+						$update->setScore1($score3);
+						$dureeEcoule = $request->get('timeLeft');
+						$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamA->getTeam());
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);	
+					}
+					if($request->get('btn')=='less2'){
+						$score4 = $update->getScore2();
+						$score4 -= 1;
+						$update->setScore2($score4);
+						$dureeEcoule = $request->get('timeLeft');
+						$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamB->getTeam());
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);	
+					}
+
+				}
+
+					
+
+				if($request->get('btn')=='btnPlay'){
+					if(!($update->getEtat()))
+					{
+						$update->setHeureDepart($now);
+						$update->setEtat(true);
+						$timeline->setEvent($dureeDuMatch."' Game ");
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);
+					}
+					else
+					{				
+						$update->setEtat(false);
+						$duree = $update->getDuree();
+						$dureeEcoule = $request->get('timeLeft');
+						$update->setDuree($dureeEcoule);
+						$timeline->setEvent($dureeDuMatch."' Timeout ");
+						$timeline->setTime($dureeDuMatch);
+						$timeline->setMatch($match);
+						$em->persist($timeline);	
+					}	
+				}
+
+				if($request->get('btn')=='btnInit'){
+					
+					$update->setDuree($request->get('duree')*60);
+					$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
+					$timeline->setEvent($dureeDuMatch."' Match begining ");
+					$timeline->setTime("0");
 					$timeline->setMatch($match);
 					$em->persist($timeline);
-				}
-				if($request->get('btn')=='more2'){
-					$score2 = $update->getScore2();
-					$score2 += 1;
-					$update->setScore2($score2);
-					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamB->getTeam());
-					$timeline->setTime($dureeDuMatch);
-					$timeline->setMatch($match);
-					$em->persist($timeline);
 
 				}
-
-				if($request->get('btn')=='less1'){
-					$score3 = $update->getScore1();
-					$score3 -= 1;
-					$update->setScore1($score3);
-					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamA->getTeam());
-					$timeline->setTime($dureeDuMatch);
-					$timeline->setMatch($match);
-					$em->persist($timeline);	
-				}
-				if($request->get('btn')=='less2'){
-					$score4 = $update->getScore2();
-					$score4 -= 1;
-					$update->setScore2($score4);
-					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamB->getTeam());
-					$timeline->setTime($dureeDuMatch);
-					$timeline->setMatch($match);
-					$em->persist($timeline);	
-				}
-
-			}
-
-				
-
-			if($request->get('btn')=='btnPlay'){
-				if(!($update->getEtat()))
-				{
-					$update->setHeureDepart($now);
-					$update->setEtat(true);
-					$timeline->setEvent($dureeDuMatch."' Game ");
-					$timeline->setTime($dureeDuMatch);
-					$timeline->setMatch($match);
-					$em->persist($timeline);
-				}
-				else
-				{				
+				if($request->get('btn')=='temps'){
 					$update->setEtat(false);
-					$duree = $update->getDuree();
-					$dureeEcoule = $request->get('timeLeft');
-					$update->setDuree($dureeEcoule);
-					$timeline->setEvent($dureeDuMatch."' Timeout ");
-					$timeline->setTime($dureeDuMatch);
-					$timeline->setMatch($match);
-					$em->persist($timeline);	
-				}	
-			}
-
-			if($request->get('btn')=='btnInit'){
-				
-				$update->setDuree($request->get('duree')*60);
-				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
-				$timeline->setEvent("0 Match begining");
-				$timeline->setTime("0");
-				$timeline->setMatch($match);
-				$em->persist($timeline);
+				}
+				if($request->get('btn')=='end'){
+					$update->setFinDuMatch(true);
+					$timeline->setEvent($dureeDuMatch."' Match ending ");
+				}
+			
+				$em->flush();
 
 			}
-			if($request->get('btn')=='temps'){
-				$update->setEtat(false);
-			}
-		
-			$em->flush();
-
 		}
 
 		
@@ -192,6 +198,7 @@ class ScoreBoardController extends Controller
 		$m->setDureeMatch(0);
 		$m->setHeureDepart($now);
 		$m->setEtat(false);
+		$m->setFinDuMatch(false);
 		$em->persist($m);
 		$em->flush();
 
@@ -253,7 +260,7 @@ class ScoreBoardController extends Controller
 
 
 		return $this->render('ScoreBoardBundle:Default:tournament.html.twig', array(
-		'matchs' => $matchs, 'team' => $team , 'tournament' => $t));
+		'matchs' => $matchs, 'team' => $team));
 	}
 }
 

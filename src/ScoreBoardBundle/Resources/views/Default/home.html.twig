@@ -1,7 +1,5 @@
 {% extends "ScoreBoardBundle::layout.html.twig" %}
-
 {% set activePage = 'home' %}
-
 {% block content %}
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
@@ -13,12 +11,24 @@
 			<tr>
 				<th>Number</th>
 				<th>Match</th>
+				<th>Score</th>
+				<th>Time</th>
+				<th>Etat</th>
 				<th>Consult</th>
 			</tr>
 			{% for match in matchs %}
 			<tr>
 				<td>{{ loop.index }}</td>
 				<td>{{ match.teamA.team }} VS {{ match.teamB.team }}</td>
+				<td>{{ match.Score1 }} - {{ match.Score2 }}</td>
+				{% if match.finDuMatch == true %}
+				<td> {{ match.DureeMatch / 60 }} minute</td>
+				<td>End game</td>
+				{% endif %}
+				{% if match.finDuMatch == false %}
+				<td>{{ (match.DureeMatch - match.timeLeft)//60 }} minute</td>
+				<td>Current game</td>
+				{% endif %}
 				<td><a href="{{ path('match_ScoreBoard', {id: match.id}) }}"><input class="btn btn-sm btn-primary" type="button" value="Consult"/></a></td>
 			</tr>
 		{% endfor %}

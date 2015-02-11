@@ -80,9 +80,17 @@ class Matchs
 
     /**
    * @ORM\ManyToOne(targetEntity="ScoreBoardBundle\Entity\Tournament")
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\JoinColumn(nullable=true)
    */
     private $tournament;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="finDuMatch", type="boolean")
+     */
+    private $finDuMatch;
 
     /**
      * Get id
@@ -279,7 +287,8 @@ class Matchs
             'duree' => $this->getDuree(),
             'etat' => $this->getEtat(),
             'timeLeft' => $this->getTimeLeft(),
-            'event' => $this->getEvents()
+            'event' => $this->getEvents(),
+            'finDuMatch' => $this->getFinDuMatch()
         );
      }
     /**
@@ -349,6 +358,30 @@ class Matchs
     public function getTournament()
     {
         return $this->tournament;
+    }
+
+
+    /**
+     * Set finDuMatch
+     *
+     * @param boolean $finDuMatch
+     * @return Matchs
+     */
+    public function setFinDuMatch($finDuMatch)
+    {
+        $this->finDuMatch = $finDuMatch;
+    
+        return $this;
+    }
+
+    /**
+     * Get finDuMatch
+     *
+     * @return boolean 
+     */
+    public function getFinDuMatch()
+    {
+        return $this->finDuMatch;
     }
 
 }

@@ -36,6 +36,7 @@ $(function(){
             }); 
 
 
+
            
             if(data.timeLeft >0){
 
@@ -49,6 +50,8 @@ $(function(){
                 }, "json");
     
             }
+
+
         
     });
          
@@ -67,6 +70,8 @@ $(function(){
    
     countdown.text(txt);
     }
+
+    
  
 
     setInterval(decrement, 1000);

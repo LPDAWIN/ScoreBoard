@@ -74,7 +74,7 @@ class ScoreBoardController extends Controller
 					$score += 1;
 					$update->setScore1($score);	
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamA->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -84,7 +84,7 @@ class ScoreBoardController extends Controller
 					$score2 += 1;
 					$update->setScore2($score2);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point pour ".$teamB->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point for ".$teamB->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -96,7 +96,7 @@ class ScoreBoardController extends Controller
 					$score3 -= 1;
 					$update->setScore1($score3);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamA->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamA->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);	
@@ -106,7 +106,7 @@ class ScoreBoardController extends Controller
 					$score4 -= 1;
 					$update->setScore2($score4);
 					$dureeEcoule = $request->get('timeLeft');
-					$timeline->setEvent($dureeDuMatch."' 1 point enlevé pour ".$teamB->getTeam());
+					$timeline->setEvent($dureeDuMatch."' 1 point removed for ".$teamB->getTeam());
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);	
@@ -121,7 +121,7 @@ class ScoreBoardController extends Controller
 				{
 					$update->setHeureDepart($now);
 					$update->setEtat(true);
-					$timeline->setEvent($dureeDuMatch."' Jeu ");
+					$timeline->setEvent($dureeDuMatch."' Game ");
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);
@@ -132,7 +132,7 @@ class ScoreBoardController extends Controller
 					$duree = $update->getDuree();
 					$dureeEcoule = $request->get('timeLeft');
 					$update->setDuree($dureeEcoule);
-					$timeline->setEvent($dureeDuMatch."' Arret de jeu ");
+					$timeline->setEvent($dureeDuMatch."' Timeout ");
 					$timeline->setTime($dureeDuMatch);
 					$timeline->setMatch($match);
 					$em->persist($timeline);	
@@ -143,7 +143,7 @@ class ScoreBoardController extends Controller
 				$update->setEtat(true);
 				$update->setDuree($request->get('duree')*60);
 				$update->setDureeMatch($update->getDureeMatch() + $request->get('duree')*60);
-				$timeline->setEvent("0 Début du match");
+				$timeline->setEvent("0 Match begining");
 				$timeline->setTime("0");
 				$timeline->setMatch($match);
 				$em->persist($timeline);

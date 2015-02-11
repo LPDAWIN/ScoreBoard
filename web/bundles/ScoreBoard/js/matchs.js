@@ -1,11 +1,4 @@
 jQuery(function(){
-
-	// var match_url =$('match_url')
-	
-	//alert(Routing.generate('match_ScoreBoard',{id:match_id}));
-	//alert(match_id); 
-
-	// Récupération variable
 	var score1 = $("#score1");
 	var score2 = $("#score2");
 	var add1 = $("#more1");
@@ -15,6 +8,7 @@ jQuery(function(){
 	var less2 = $("#less2");
 	var countdown = $("#countdown"); 
 	var teamNumber = $("#teamNumber");
+	var endGame = $("#end");
 
 	$("i").click(function(){
 		var btn = $(this).attr('id');
@@ -61,6 +55,8 @@ jQuery(function(){
 		j -= 1;
 		score2.html(j);
 	});
+
+
 
 
 

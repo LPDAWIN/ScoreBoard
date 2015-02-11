@@ -152,6 +152,7 @@ class ScoreBoardController extends Controller
 				}
 				if($request->get('btn')=='temps'){
 					$update->setEtat(false);
+
 				}
 				if($request->get('btn')=='end'){
 					$update->setFinDuMatch(true);
@@ -159,6 +160,7 @@ class ScoreBoardController extends Controller
 				}
 			
 				$em->flush();
+
 
 			}
 		}
@@ -178,7 +180,11 @@ class ScoreBoardController extends Controller
 	
 }
 
-
+	public function contactAction()
+	{
+		$content = $this->get('templating')->render('ScoreBoardBundle:Default:contact.html.twig');
+		return new Response($content);
+	}
 
 	public function createAction()
 	{

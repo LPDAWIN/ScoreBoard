@@ -1,3 +1,17 @@
+
+
+.jumbotron {
+	 background:url("../img/stade.jpg") no-repeat; 
+}
+
+.well{
+	opacity: 0.80;
+}
+
+tbody {
+	opacity: 0.80;
+}
+
 .Board {
 	text-align: center;
 }
@@ -32,6 +46,10 @@
 	clear: both;
 	text-align: center;
 	margin: auto;
+}
+
+.tName {
+	
 }
 
 #score1, #score2 {
@@ -82,3 +100,9 @@
 	border-width: 2px;
 	border-radius: 4px;
 }
+
+@media screen and (max-width: 600px) {
+   
+}
+
+

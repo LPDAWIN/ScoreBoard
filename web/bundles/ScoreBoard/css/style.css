@@ -1,7 +1,7 @@
-    .panel-default{
+.panel-default{
         opacity: 0.80;
     }
-
+    
 .jumbotron {
 	 background:url("../img/stade.jpg") no-repeat; 
 }
@@ -12,7 +12,9 @@
 
 tbody {
 	opacity: 0.80;
+
 }
+
 
 .Board {
 	text-align: center;
@@ -23,16 +25,20 @@ tbody {
 	margin-top: 50px;
 }
 
-.team1, .team2 {
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 4px;
-	width : 200px;
+.team1 {
+	margin-left: 10%;
+}
+
+#scoreDisplay {
+ text-align: center;
+}
+
+#timerform {
+	text-align: center;
 }
 
 .timer {
-	margin-right: 100px;
-	margin-left : 100px;
+
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 4px;

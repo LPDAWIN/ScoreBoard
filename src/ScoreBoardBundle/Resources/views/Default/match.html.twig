@@ -19,7 +19,7 @@ var match_id ="{{ match.id }}";
 				</div>
 				<div class="timer">
 					<form id="timerform">
-						<h1><span id ="countdown">Waiting initialisation</span></h1>
+						<h1><span id ="countdown">--:--</span></h1>
 						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 						<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
 						<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
@@ -35,7 +35,7 @@ var match_id ="{{ match.id }}";
 			
 			<div class ="ajax">
 				<div class="Score">
-					<h2>Score</h2>
+					<h1 id="scoreDisplay">Score</h1>
 						<div class="scoreteam1">
 							<label id="score1" value="{{ match.score1 }}"></label>
 							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

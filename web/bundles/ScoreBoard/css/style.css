@@ -16,16 +16,19 @@ tbody {
 	text-align: center;
 }
 
+
+
 .team1, .team2, .timer {
 	display: inline-block;
-	margin-top: 50px;
+	margin-left: 15%;
+	text-align: center;
 }
 
 .team1 {
 	margin-left: 10%;
 }
 
-#scoreDisplay {
+#scoreDisplay, #timeline {
  text-align: center;
 }
 
@@ -46,8 +49,6 @@ tbody {
 
 .Score{
 	width : 900px;
-	display: block;
-	clear: both;
 	margin: auto;
 	text-align: center;
 }
@@ -83,18 +84,6 @@ tbody {
 	font-size: 30px;
 }
 
-@media only screen and (max-width: 540px) {
-	.Score {
-		display: block;
-		text-align: left;
-	}
-
-	.scoreteam1, .scoreteam2 {
-		display: block;
-	}
-	
-}
-
 .btn, .btn-sm, .btn-default {
 	margin:auto;
 	margin-bottom: 10px;
@@ -105,22 +94,64 @@ tbody {
 	margin-top: -8px;
 }
 
-#timeline {
-	margin-left: 45%;
+#timelineUl {
+	list-style-type: none;
 }
 
 .scrollbar {
 	overflow:scroll;
-	margin-left: 40%;
 	height: 100px;
-	width: 20%;
+	margin-left: 20%;
+	margin-right: 20%;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 4px;
+	text-align: center;
+	font-size: 20px;
+
 }
 
-@media screen and (max-width: 600px) {
-   
+@media screen and (max-width: 1000px) {
+ 	
+ 	.team1, .team2, .timer {
+	display: block;
+	margin-left: 5%;
+	text-align: center;
+	}
+	
+	#scoreDisplay {
+		text-align: left;
+		margin-left: 15%;
+	}
+
+
+	.Score {
+		text-align: left;
+		width: auto;
+	}
+	
+	.scoreteam1, .scoreteam2 {
+		display:inline-block;
+	}
+
+	.scoreteam2 {
+		margin-left: 5%;
+	}
+
+	.scrollbar {
+	overflow:scroll;
+	height: 50px;
+	margin-left: 20%;
+	margin-right: 20%;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 4px;
+	text-align: center;
+	font-size: 20px;
+	}
+
+
+
 }
 
 

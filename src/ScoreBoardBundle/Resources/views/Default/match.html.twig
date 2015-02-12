@@ -13,26 +13,27 @@ var match_id ="{{ match.id }}";
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
 		<div class="well">
-				<div class="team1">
-					<h1 id="tName">{{ match.teamA.team }}</h1>
-					<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
+				<div id="disp">
+					<div class="team1">
+						<h1 id="tName">{{ match.teamA.team }}</h1>
+						<img width="50px" height="50px" src="{{ match.teamA.logo }}"/>
+					</div>
+					<div class="timer">
+						<form id="timerform">
+							<h1><span id ="countdown">--:--</span></h1>
+							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+							<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
+							<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
+							<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
+							<input class="btn btn-sm btn-primary"type="button" value="Close the game" id="end">
+							{% endif %}
+						</form>
+					</div>
+					<div class="team2">
+						<h1>{{ match.teamB.team }}</h1>
+						<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
+					</div>
 				</div>
-				<div class="timer">
-					<form id="timerform">
-						<h1><span id ="countdown">--:--</span></h1>
-						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						<input class="btn btn-sm btn-primary" type="button" value="Play/Pause" id="btnPlay">
-						<input class="btn btn-sm btn-primary"type="button" value="Initialization" id="btnInit">
-						<input id="stime" type='text' name='startTime' placeholder="Enter your time" style='width:150px;' />
-						<button id="end">End the game</button>
-						{% endif %}
-					</form>
-				</div>
-				<div class="team2">
-					<h1>{{ match.teamB.team }}</h1>
-					<img width="50px" height="50px" src="{{ match.teamB.logo }}" />
-				</div>
-			
 			<div class ="ajax">
 				<div class="Score">
 					<h1 id="scoreDisplay">Score</h1>
@@ -53,10 +54,10 @@ var match_id ="{{ match.id }}";
 				</div>
 			</div>
 		
-			<h2 id="timeline">Timeline</h2>
+			<h1 id="timeline">Timeline</h1>
 			<div class="scrollbar">
 				<ul id = "timelineUl">
-					<li id="timelineli"></li>
+					<h2><li id="timelineli"></li></h2>
 				</ul>
 			</div>
 		</div>

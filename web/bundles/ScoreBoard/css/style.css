@@ -1,4 +1,6 @@
-
+    .panel-default{
+        opacity: 0.80;
+    }
 
 .jumbotron {
 	 background:url("../img/stade.jpg") no-repeat; 
